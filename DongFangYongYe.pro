@@ -9,7 +9,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    sources/Model/bomb.cpp \
     sources/Model/gamemodel.cpp \
+    sources/Model/map.cpp \
     sources/Model/role/bosseirin.cpp \
     sources/Model/role/bosskaguya.cpp \
     sources/Model/role/bosssakuya.cpp \
@@ -36,7 +38,9 @@ SOURCES += \
 
 HEADERS += \
     sources/Common/config.h \
+    sources/Model/bomb.h \
     sources/Model/gamemodel.h \
+    sources/Model/map.h \
     sources/Model/role/bosseirin.h \
     sources/Model/role/bosskaguya.h \
     sources/Model/role/bosssakuya.h \
