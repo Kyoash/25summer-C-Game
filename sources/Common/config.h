@@ -7,7 +7,7 @@ enum RoleType {
 	PLAYER_MARISA, 
 	BOSS_SAKURA, // 敌方Boss
 	BOSS_YOUMU,
-	BOSS_SEIRIN,
+    BOSS_EIRIN,
 	BOSS_KAGUYA,
 	NORMAL_ENEMY // 敌方普通敌机
 };
@@ -17,9 +17,45 @@ enum RoleType {
 #define MARISA_PATH ":/res/role/marisa.png" // Player 角色贴图
 #define SAKURA_PATH ":/res/role/sakura.png" // Boss 角色贴图
 #define YOUMU_PATH ":/res/role/youmu.png" // Boss 角色贴图
-#define SEIRIN_PATH ":/res/role/seirin.png" // Boss 角色贴图
+#define EIRIN_PATH ":/res/role/eirin.png" // Boss 角色贴图
 #define KAGUYA_PATH ":/res/role/kaguya.png" // Boss 角色贴图
 #define ENEMY_PATH ":/res/role/enemy.png" // 敌机贴图
+#define SPELL_CIRCLE_SOURCE ":/res/ANM/ANM/etama/etama3.png"
+#define ENEMY_BOSS_BULLET_1_SOURCE ":/res/ANM/ANM/etama/etama.png"
+#define ENEMY_BOSS_BULLET_2_SOURCE ":/res/ANM/ANM/etama/etama6.png"
+
+#define ITEM_SOURCE ":/res/ANM/ANM/etama/etama2.png"
+#define ASCII_SOURCE ":/res/ANM/ANM/ascii/ascii.png"
+#define LOADING_SOURCE ":/res/ANM/ANM/ascii/loading.png"
+#define PAUSE_SOURCE ":/res/ANM/ANM/ascii/pause.png"
+
+#define NAME_SOURCE ":/res/ANM/ANM/front/ename.png"
+#define LIFE_BOMB_SOURCE ":/res/ANM/ANM/front/front.png"
+
+#define PAINTING_REIMU_YUKARI_SOURCE ":/res/ANM/ANM/image/loading00.png"
+#define PAINTING_MARISA_ALICE_SOURCE ":/res/ANM/ANM/image/loading01.png"
+#define PAINTING_REIMU_SOURCE ":/res/ANM/ANM/image/loading00h.png"
+#define PAINTING_MARISA_SOURCE ":/res/ANM/ANM/image/loading01h.png"
+
+#define PLAYER_REIMU_SOURCE ":/res/ANM/ANM/player/player00.png"
+#define PLAYER_MARISA_SOURCE ":/res/ANM/ANM/player/player01.png"
+
+#define ENEMY_SOURCE ":/res/ANM/ANM/stgenm/enemy.png"
+#define BOSS_SAKUYA_SOURCE ":/res/ANM/ANM/stgenm/stg9enm_sk.png"
+#define BOSS_YOUMU_SOURCE ":/res/ANM/ANM/stgenm/stg9enm_ym.png"
+#define BOSS_EIRIN_SOURCE ":/res/ANM/ANM/stgenm/stg7enm.png"
+#define BOSS_KAGUYA_SOURCE ":/res/ANM/ANM/stgenm/stg7enm2.png"
+
+#define RESULT_PLAYER_SOURCE ":/res/ANM/ANM/result/result00.png"
+#define RESULT_DIFFICULTY_SOURCE ":/res/ANM/ANM/result/result01.png"
+#define RESULT_SCORE_SOURCE ":/res/ANM/ANM/result/result03.png"
+
+#define REIMU_YUKARI_SELECT_SOURCE ":/res/ANM/ANM/title/sl_pltxt0.png"
+#define MARISA_ALICE_SELECT_SOURCE ":/res/ANM/ANM/title/sl_pltxt1.png"
+#define MENU_OPTIONS_SOURCE ":/res/ANM/ANM/title/title01.png"
+#define MENU_BACKGROUND_SOURCE ":/res/ANM/ANM/title/title02.png"
+
+#define MUSIC_SOURCE ":/res/MUSIC/th08_00.mid" // th08_00.mid ~ th08_20.mid, 还有一些.wav 暂略
 
 // 游戏地图配置
 #define GAME_WIDTH 600  // 游戏窗口宽度

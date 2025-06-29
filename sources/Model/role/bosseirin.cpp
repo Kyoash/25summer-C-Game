@@ -3,7 +3,7 @@
 #include <cmath>
 #include <QDebug>
 
-BossSeirin::BossSeirin() : Role(BOSS_SEIRIN)
+BossEirin::BossEirin() : Role(BOSS_EIRIN)
 {
     // Boss行为相关
 	srand(time(NULL)); // 初始化随机数种子
@@ -19,7 +19,7 @@ BossSeirin::BossSeirin() : Role(BOSS_SEIRIN)
 	m_moveLimit = rand() % 3 + 1; // 随机移动次数限制（1-3次）
 }
 
-void BossSeirin::shoot()
+void BossEirin::shoot()
 {
     // 根据当前模式射击
     switch (m_currentPattern) {
@@ -45,7 +45,7 @@ void BossSeirin::shoot()
     }
 }
 
-void BossSeirin::updatePosition()
+void BossEirin::updatePosition()
 {
     srand(time(NULL));
     // Partten1 Boss简单左右移动，并且每隔一段时间停留一会
@@ -118,7 +118,7 @@ void BossSeirin::updatePosition()
 	}
 }
 
-void BossSeirin::pattern1()
+void BossEirin::pattern1()
 {
     // 圆形弹幕
     m_shootRecorderEnemy++;
@@ -149,7 +149,7 @@ void BossSeirin::pattern1()
     }
 }
 
-void BossSeirin::pattern2()
+void BossEirin::pattern2()
 {
     // 螺旋弹幕
     m_shootRecorderEnemy++;
@@ -188,7 +188,7 @@ void BossSeirin::pattern2()
     }
 }
 
-void BossSeirin::pattern3()
+void BossEirin::pattern3()
 {
     // 瞄准玩家的弹幕
     m_shootRecorderEnemy++;
