@@ -1,12 +1,12 @@
-#ifndef BOSS_SEIRIN_H
-#define BOSS_SEIRIN_H
+#ifndef BOSS_EIRIN_H
+#define BOSS_EIRIN_H
 
 #include "role.h"
 
-class BossSeirin : public Role
+class BossEirin : public Role
 {
 public:
-    BossSeirin();
+    BossEirin();
 
     // ÊµÏÖÐéº¯Êý
     void shoot() override;
