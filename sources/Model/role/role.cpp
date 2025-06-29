@@ -28,8 +28,8 @@ Role::Role(RoleType type) :
     case BOSS_YOUMU:
         m_Role.load(YOUMU_PATH);
         break;
-    case BOSS_SEIRIN:
-        m_Role.load(SEIRIN_PATH);
+    case BOSS_EIRIN:
+        m_Role.load(EIRIN_PATH);
         break;
     case BOSS_KAGUYA:
         m_Role.load(KAGUYA_PATH);
@@ -60,7 +60,7 @@ Role::Role(RoleType type) :
 
     case BOSS_SAKURA:
     case BOSS_YOUMU:
-    case BOSS_SEIRIN:
+    case BOSS_EIRIN:
     case BOSS_KAGUYA:
         // Boss角色 - 更多生命值，位于屏幕上方中间
         m_maxLife = BOSS_LIFE; // Boss有80条生命
@@ -140,7 +140,7 @@ void Role::reset()
 
     case BOSS_SAKURA:
     case BOSS_YOUMU:
-    case BOSS_SEIRIN:
+    case BOSS_EIRIN:
     case BOSS_KAGUYA:
         m_life = BOSS_LIFE;
         m_X = GAME_WIDTH * 0.5 - m_Role.width() * 0.5;
