@@ -37,7 +37,7 @@ void GameModel::updateGameState()
 void GameModel::updatePositions()
 {
     // 根据加速状态选择移动速度
-    int currentSpeed = m_speedShift ? SHIFTED_SPEED : NORMAL_SPEED;
+    int currentSpeed = m_speedShift ? SHIFTED_PLAYER_SPEED : NORMAL_PLAYER_SPEED;
 
     // 添加键盘控制的飞机移动
     bool positionChanged = false;
@@ -49,8 +49,8 @@ void GameModel::updatePositions()
     if (m_moveRight) {
         m_reimu.m_X += currentSpeed;
         // 限制不能越过游戏区域边界
-        if (m_reimu.m_X > PLAY_AREA_WIDTH - m_hero.m_Rect.width()) {
-            m_reimu.m_X = PLAY_AREA_WIDTH - m_hero.m_Rect.width();
+        if (m_reimu.m_X > GAME_WIDTH - m_reimu.m_Rect.width()) {
+            m_reimu.m_X = GAME_WIDTH - m_reimu.m_Rect.width();
         }
         positionChanged = true;
     }
