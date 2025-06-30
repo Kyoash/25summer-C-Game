@@ -17,6 +17,8 @@ public:
     // 获取子弹类型
     BulletType getType() const { return m_type; }
 
+    void setAngleLimit(double limit) { angleLimit = limit; }
+
 public:
     // 子弹类型
     BulletType m_type;

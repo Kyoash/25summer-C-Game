@@ -4,8 +4,8 @@ Role::Role(RoleType type) :
     m_type(type),
     m_X(0),
     m_Y(0),
-    m_life(1),  // Ä¬ÈÏÖµ£¬ºóÃæ»á¸ù¾ÝÀàÐÍ¸²¸Ç
-    m_maxLife(1), // Ä¬ÈÏÖµ£¬ºóÃæ»á¸ù¾ÝÀàÐÍ¸²¸Ç
+    m_life(1),  // é»˜è®¤å€¼ï¼ŒåŽé¢ä¼šæ ¹æ®ç±»åž‹è¦†ç›–
+    m_maxLife(1), // é»˜è®¤å€¼ï¼ŒåŽé¢ä¼šæ ¹æ®ç±»åž‹è¦†ç›–
     m_spell(0),
     m_maxSpell(0),
     m_shootRecorderPlayer(0),
@@ -14,7 +14,7 @@ Role::Role(RoleType type) :
     m_Free(true)
 {
 
-    // ¼ÓÔØ½ÇÉ«ÌùÍ¼
+    // åŠ è½½è§’è‰²è´´å›¾
     switch (m_type) {
     case PLAYER_REIMU:
         m_Role.load(REIMU_PATH);
@@ -38,60 +38,60 @@ Role::Role(RoleType type) :
         m_Role.load(ENEMY_PATH);
         break;
     default:
-        // Î´ÖªÀàÐÍ£¬Ê¹ÓÃÄ¬ÈÏÌùÍ¼
-        m_Role.load(REIMU_PATH); // Ä¬ÈÏÊ¹ÓÃReimuÌùÍ¼
+        // æœªçŸ¥ç±»åž‹ï¼Œä½¿ç”¨é»˜è®¤è´´å›¾
+        m_Role.load(REIMU_PATH); // é»˜è®¤ä½¿ç”¨Reimuè´´å›¾
         break;
     }
 
 
-    // ¸ù¾Ý½ÇÉ«ÀàÐÍÉèÖÃ²»Í¬µÄÊôÐÔ
+    // æ ¹æ®è§’è‰²ç±»åž‹è®¾ç½®ä¸åŒçš„å±žæ€§
     switch (m_type) {
     case PLAYER_REIMU:
     case PLAYER_MARISA:
-        // Íæ¼Ò½ÇÉ« 3ÌõÉúÃü£¬Î»ÓÚÆÁÄ»ÏÂ·½ÖÐ¼ä
+        // çŽ©å®¶è§’è‰² 3æ¡ç”Ÿå‘½ï¼Œä½äºŽå±å¹•ä¸‹æ–¹ä¸­é—´
         m_maxLife = MAX_PLAYER_LIFE;
         m_life = INIT_PLAYER_LIFE;
         m_X = GAME_WIDTH * 0.5 - m_Role.width() * 0.5;
-        m_Y = GAME_HEIGHT - m_Role.height() - 50; // Àëµ×²¿50ÏñËØ
-        m_spell = INIT_PLAYER_SPELL; // ³õÊ¼·û¿¨²ÛÎª¿Õ
-        m_maxSpell = MAX_PLAYER_SPELL; // Íæ¼ÒÓÐ3¸ö·û¿¨²Û
-        m_Free = false; // Íæ¼Ò³õÊ¼Îª·Ç¿ÕÏÐ×´Ì¬
+        m_Y = GAME_HEIGHT - m_Role.height() - 50; // ç¦»åº•éƒ¨50åƒç´ 
+        m_spell = INIT_PLAYER_SPELL; // åˆå§‹ç¬¦å¡æ§½ä¸ºç©º
+        m_maxSpell = MAX_PLAYER_SPELL; // çŽ©å®¶æœ‰3ä¸ªç¬¦å¡æ§½
+        m_Free = false; // çŽ©å®¶åˆå§‹ä¸ºéžç©ºé—²çŠ¶æ€
         break;
 
     case BOSS_SAKURA:
     case BOSS_YOUMU:
     case BOSS_EIRIN:
     case BOSS_KAGUYA:
-        // Boss½ÇÉ« - ¸ü¶àÉúÃüÖµ£¬Î»ÓÚÆÁÄ»ÉÏ·½ÖÐ¼ä
-        m_maxLife = BOSS_LIFE; // BossÓÐ80ÌõÉúÃü
+        // Bossè§’è‰² - æ›´å¤šç”Ÿå‘½å€¼ï¼Œä½äºŽå±å¹•ä¸Šæ–¹ä¸­é—´
+        m_maxLife = BOSS_LIFE; // Bossæœ‰80æ¡ç”Ÿå‘½
         m_life = m_maxLife;
         m_X = GAME_WIDTH * 0.5 - m_Role.width() * 0.5;
-        m_Y = 200; // Àë¶¥²¿200ÏñËØ
-        m_Free = false; // Boss³õÊ¼Îª·Ç¿ÕÏÐ×´Ì¬
+        m_Y = 200; // ç¦»é¡¶éƒ¨200åƒç´ 
+        m_Free = false; // Bossåˆå§‹ä¸ºéžç©ºé—²çŠ¶æ€
         break;
 
     case NORMAL_ENEMY:
-        // ÆÕÍ¨µÐ»ú - 1ÌõÉúÃü£¬Î»ÖÃÓÉÉú³ÉÊ±¾ö¶¨
+        // æ™®é€šæ•Œæœº - 1æ¡ç”Ÿå‘½ï¼Œä½ç½®ç”±ç”Ÿæˆæ—¶å†³å®š
         m_X = 0;
         m_Y = 0;
         m_life = ENEMY_LIFE;
         m_maxLife = ENEMY_LIFE;
         m_Speed = ENEMY_SPEED;
-        m_Free = true; // µÐ»ú³õÊ¼Îª¿ÕÏÐ×´Ì¬
+        m_Free = true; // æ•Œæœºåˆå§‹ä¸ºç©ºé—²çŠ¶æ€
         break;
 
     default:
-        // Î´ÖªÀàÐÍ£¬Ê¹ÓÃÄ¬ÈÏÖµ
+        // æœªçŸ¥ç±»åž‹ï¼Œä½¿ç”¨é»˜è®¤å€¼
         break;
     }
 
-    // ³õÊ¼»¯ÌùÍ¼×ø±ê´óÐ¡
+    // åˆå§‹åŒ–è´´å›¾åæ ‡å¤§å°
     m_Rect.setWidth(m_Role.width());
     m_Rect.setHeight(m_Role.height());
     m_Rect.moveTo(m_X, m_Y);
 
-    // ³õÊ¼»¯Åö×²¾ØÐÎ
-    // ¶ÔÓÚBossÊ¹ÓÃ¸ü´óµÄÅö×²¿ò
+    // åˆå§‹åŒ–ç¢°æ’žçŸ©å½¢
+    // å¯¹äºŽBossä½¿ç”¨æ›´å¤§çš„ç¢°æ’žæ¡†
     if (m_type >= BOSS_SAKURA && m_type <= BOSS_KAGUYA) {
         m_collisionRect.setWidth(BOSS_COLLISION_WIDTH);
         m_collisionRect.setHeight(BOSS_COLLISION_HEIGHT);
@@ -107,9 +107,13 @@ Role::Role(RoleType type) :
     m_collisionRect.moveTo(m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
         m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
 
-    // ³õÊ¼»¯×Óµ¯
+    // åˆå§‹åŒ–å­å¼¹
     for (int i = 0; i < MAX_BULLETS; i++) {
         m_firstBullets[i] = Bullet(m_type, DEFAULT_BULLET);
+    }
+    for (int i = 0; i < MAX_BULLETS; i++){
+        m_secondBullets[i] = Bullet(m_type, DEFAULT_BULLET);
+        m_secondBullets[i].isTracking = true;
     }
 }
 
@@ -118,14 +122,14 @@ void Role::setPosition(int x, int y)
     m_X = x;
     m_Y = y;
     m_Rect.moveTo(m_X, m_Y);
-    // ¸üÐÂÅö×²¿òÎ»ÖÃ
+    // æ›´æ–°ç¢°æ’žæ¡†ä½ç½®
     m_collisionRect.moveTo(m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
         m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
 }
 
 void Role::reset()
 {
-    // ¸ù¾Ý½ÇÉ«ÀàÐÍÖØÖÃ×´Ì¬
+    // æ ¹æ®è§’è‰²ç±»åž‹é‡ç½®çŠ¶æ€
     switch (m_type) {
     case PLAYER_REIMU:
     case PLAYER_MARISA:
@@ -156,9 +160,12 @@ void Role::reset()
         break;
     }
 
-    // ÖØÖÃ×Óµ¯
+    // é‡ç½®å­å¼¹
     for (int i = 0; i < MAX_BULLETS; i++) {
         m_firstBullets[i].m_Free = true;
+    }
+    for (int i = 0; i < MAX_BULLETS; i++) {
+        m_secondBullets[i].m_Free = true;
     }
 }
 

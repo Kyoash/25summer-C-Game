@@ -8,11 +8,11 @@ class BossEirin : public Role
 public:
     BossEirin();
 
-    // ÊµÏÖĞéº¯Êı
+    // å®ç°è™šå‡½æ•°
     void shoot() override;
     void updatePosition() override;
 
-    // BossÌØÓĞµÄĞĞÎª
+    // Bossç‰¹æœ‰çš„è¡Œä¸º
     void setPattern(int pattern) { m_currentPattern = pattern; }
     void SetPlayerPosition(int x, int y) {
         playerX = x;
@@ -20,24 +20,24 @@ public:
 	}
 
 private:
-    // BossÒÆ¶¯ËÙ¶È
+    // Bossç§»åŠ¨é€Ÿåº¦
     int m_SpeedX;
     int m_SpeedY;
-    // BossĞĞÎªÄ£Ê½
-    void pattern1(); // Ô²ĞÎµ¯Ä»
-    void pattern2(); // ÂİĞıµ¯Ä»
-    void pattern3(); // Ãé×¼µ¯Ä»
+    // Bossè¡Œä¸ºæ¨¡å¼
+    void pattern1(); // åœ†å½¢å¼¹å¹•
+    void pattern2(); // èºæ—‹å¼¹å¹•
+    void pattern3(); // ç„å‡†å¼¹å¹•
 
-    int m_currentPattern; // µ±Ç°µ¯Ä»Ä£Ê½
-    int m_moveCounter;        // ÒÆ¶¯´ÎÊı¼ÆÊı
-    int m_pauseTimer;         // Í£Áô¼ÆÊ±Æ÷
-    int m_patternTimer;   // Ä£Ê½¼ÆÊ±Æ÷
-    int m_targetX, m_targetY; // Ä¿±êÎ»ÖÃ£¨Ëæ»úÒÆ¶¯£©
-    int m_moveLimit; // ÒÆ¶¯´ÎÊıÏŞÖÆ£¨Ëæ»ú£©
-    double m_spiralAngle; // ÂİĞıµ¯Ä»½Ç¶È
+    int m_currentPattern; // å½“å‰å¼¹å¹•æ¨¡å¼
+    int m_moveCounter;        // ç§»åŠ¨æ¬¡æ•°è®¡æ•°
+    int m_pauseTimer;         // åœç•™è®¡æ—¶å™¨
+    int m_patternTimer;   // æ¨¡å¼è®¡æ—¶å™¨
+    int m_targetX, m_targetY; // ç›®æ ‡ä½ç½®ï¼ˆéšæœºç§»åŠ¨ï¼‰
+    int m_moveLimit; // ç§»åŠ¨æ¬¡æ•°é™åˆ¶ï¼ˆéšæœºï¼‰
+    double m_spiralAngle; // èºæ—‹å¼¹å¹•è§’åº¦
     
-	int playerX; // Íæ¼ÒX×ø±ê£¬ÓÃÓÚÃé×¼µ¯Ä»
-    int playerY; // Íæ¼ÒY×ø±ê£¬ÓÃÓÚÃé×¼µ¯Ä»(ĞèÒªÊ±¿ÌË¢ĞÂ)
+	int playerX; // ç©å®¶Xåæ ‡ï¼Œç”¨äºç„å‡†å¼¹å¹•
+    int playerY; // ç©å®¶Yåæ ‡ï¼Œç”¨äºç„å‡†å¼¹å¹•(éœ€è¦æ—¶åˆ»åˆ·æ–°)
    
 };
 

@@ -8,27 +8,27 @@ class Reimu : public Role
 public:
     Reimu();
 
-    // ÊµÏÖĞéº¯Êı
+    // å®ç°è™šå‡½æ•°
     void shoot() override;
     void updatePosition() override;
 
-    // ÁéÃÎÌØÓĞµÄÄÜÁ¦
-    void useSpellCard();
+    // ç‰¹æ®ŠæŠ€èƒ½å‡½æ•°
+    void useSpellCard() override;
 
-	// »ñÈ¡ÁéÃÎµÄ»ğÁ¦µÈ¼¶
+    // è·å–å½“å‰çš„ç«åŠ›å€¼
     int getPower() const { return m_power; }
-    // »ñÈ¡ÁéÃÎµÄ²Áµ¯¼ÆÊı
+    // è·å–å½“å‰çš„æ“¦å¼¹è®¡æ•°
     int getGraze() const { return m_graze; }
-    // ÉèÖÃÁéÃÎµÄ»ğÁ¦µÈ¼¶
+    // è®¾ç½®ç«åŠ›å€¼
     void setPower(int power) { m_power = power; }
-    // ÉèÖÃÁéÃÎµÄ²Áµ¯¼ÆÊı
-	void setGraze(int graze) { m_graze = graze; }
+    // è®¾ç½®æ“¦å¼¹è®¡æ•°
+    void setGraze(int graze) { m_graze = graze; }
 
 private:
-    // ÁéÃÎÌØÓĞµÄÊôĞÔ
-    int m_power; // »ğÁ¦µÈ¼¶
-    int m_graze; // ²Áµ¯¼ÆÊı
-    bool m_unmatched; // ÊÇ·ñÎŞµĞ
+    // è§’è‰²ç‰¹æœ‰å±æ€§
+    int m_power;    // ç«åŠ›å€¼
+    int m_graze;    // æ“¦å¼¹è®¡æ•°
+    bool m_unmatched; // æ˜¯å¦å¤„äºæ— æ•ŒçŠ¶æ€
 };
 
 #endif // REIMU_H

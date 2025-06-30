@@ -5,23 +5,23 @@
 
 BossEirin::BossEirin() : Role(BOSS_EIRIN)
 {
-    // BossĞĞÎªÏà¹Ø
-	srand(time(NULL)); // ³õÊ¼»¯Ëæ»úÊıÖÖ×Ó
+    // Bossè¡Œä¸ºç›¸å…³
+	srand(time(NULL)); // åˆå§‹åŒ–éšæœºæ•°ç§å­
     m_currentPattern = 1;
     m_patternTimer = 0;
     m_spiralAngle = 0;
-    m_SpeedX = 3; // BossÒÆ¶¯ËÙ¶È
-    m_SpeedY = 0; // Boss³õÊ¼²»´¹Ö±ÒÆ¶¯
-    m_pauseTimer = 0; // Í£Áô¼ÆÊ±Æ÷
-    m_moveCounter = 0; // ÒÆ¶¯´ÎÊı¼ÆÊı
-	m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // Ëæ»úÄ¿±êXÎ»ÖÃ
-	m_targetY = 150 + rand() % 100; // Ëæ»úÄ¿±êYÎ»ÖÃ£¨150-250ÏñËØ£©
-	m_moveLimit = rand() % 3 + 1; // Ëæ»úÒÆ¶¯´ÎÊıÏŞÖÆ£¨1-3´Î£©
+    m_SpeedX = 3; // Bossç§»åŠ¨é€Ÿåº¦
+    m_SpeedY = 0; // Bossåˆå§‹ä¸å‚ç›´ç§»åŠ¨
+    m_pauseTimer = 0; // åœç•™è®¡æ—¶å™¨
+    m_moveCounter = 0; // ç§»åŠ¨æ¬¡æ•°è®¡æ•°
+	m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // éšæœºç›®æ ‡Xä½ç½®
+	m_targetY = 150 + rand() % 100; // éšæœºç›®æ ‡Yä½ç½®ï¼ˆ150-250åƒç´ ï¼‰
+	m_moveLimit = rand() % 3 + 1; // éšæœºç§»åŠ¨æ¬¡æ•°é™åˆ¶ï¼ˆ1-3æ¬¡ï¼‰
 }
 
 void BossEirin::shoot()
 {
-    // ¸ù¾İµ±Ç°Ä£Ê½Éä»÷
+    // æ ¹æ®å½“å‰æ¨¡å¼å°„å‡»
     switch (m_currentPattern) {
     case 1:
         pattern1();
@@ -33,13 +33,13 @@ void BossEirin::shoot()
         pattern3();
         break;
     default:
-        pattern1(); // Ä¬ÈÏÊ¹ÓÃÄ£Ê½1
+        pattern1(); // é»˜è®¤ä½¿ç”¨æ¨¡å¼1
         break;
     }
 
-    // ¸üĞÂÄ£Ê½¼ÆÊ±Æ÷
+    // æ›´æ–°æ¨¡å¼è®¡æ—¶å™¨
     m_patternTimer++;
-    if (m_patternTimer > 400) { // Ã¿400Ö¡ÇĞ»»Ä£Ê½
+    if (m_patternTimer > 400) { // æ¯400å¸§åˆ‡æ¢æ¨¡å¼
         m_patternTimer = 0;
         m_currentPattern = (m_currentPattern % 3) + 1;
     }
@@ -48,14 +48,14 @@ void BossEirin::shoot()
 void BossEirin::updatePosition()
 {
     srand(time(NULL));
-    // Partten1 Boss¼òµ¥×óÓÒÒÆ¶¯£¬²¢ÇÒÃ¿¸ôÒ»¶ÎÊ±¼äÍ£ÁôÒ»»á
+    // Partten1 Bossç®€å•å·¦å³ç§»åŠ¨ï¼Œå¹¶ä¸”æ¯éš”ä¸€æ®µæ—¶é—´åœç•™ä¸€ä¼š
     if (m_currentPattern == 1) {
-        // Í£ÁôÆÚ
+        // åœç•™æœŸ
         if (m_pauseTimer > 0) {
             m_pauseTimer--;
             return;
         }
-        // ÒÆ¶¯ÆÚ
+        // ç§»åŠ¨æœŸ
         if (m_X <= 0) {
             m_SpeedX = abs(m_SpeedX);
         }
@@ -63,30 +63,30 @@ void BossEirin::updatePosition()
             m_SpeedX = -abs(m_SpeedX);
             m_moveCounter++;
         }
-		// Ã¿ÒÆ¶¯¼¸´ÎºóÍ£ÁôÒ»¶ÎÊ±¼ä
+		// æ¯ç§»åŠ¨å‡ æ¬¡ååœç•™ä¸€æ®µæ—¶é—´
         if(m_moveCounter >= m_moveLimit) {
             m_moveCounter = 0;
-            m_pauseTimer = rand() % 60 + 30; // Í£Áô30-90Ö¡
-			m_moveLimit = rand() % 3 + 1; // Ëæ»úÏÂ´ÎÒÆ¶¯´ÎÊıÏŞÖÆ£¨1-3´Î£©
+            m_pauseTimer = rand() % 60 + 30; // åœç•™30-90å¸§
+			m_moveLimit = rand() % 3 + 1; // éšæœºä¸‹æ¬¡ç§»åŠ¨æ¬¡æ•°é™åˆ¶ï¼ˆ1-3æ¬¡ï¼‰
 		}
         m_X += m_Speed;
         m_Rect.moveTo(m_X, m_Y);
 
-        // ¸üĞÂÅö×²¿òÎ»ÖÃ
+        // æ›´æ–°ç¢°æ’æ¡†ä½ç½®
         m_collisionRect.moveTo(m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
             m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
     }
     else if (m_currentPattern >= 2) {
-        // Partten23 BossËæ»ú·½ÏòÒÆ¶¯£¨Ë®Æ½´ó·ù¶È£¬×İÏòĞ¡·ù¶È£¬Ã¿ÒÆ¶¯Èı´ÎºóÔÚÒ»¸öÎ»ÖÃÍ£ÁôÒ»¶ÎÊ±¼ä£©
-        // Í£ÁôÆÚ
+        // Partten23 Bosséšæœºæ–¹å‘ç§»åŠ¨ï¼ˆæ°´å¹³å¤§å¹…åº¦ï¼Œçºµå‘å°å¹…åº¦ï¼Œæ¯ç§»åŠ¨ä¸‰æ¬¡ååœ¨ä¸€ä¸ªä½ç½®åœç•™ä¸€æ®µæ—¶é—´ï¼‰
+        // åœç•™æœŸ
         if (m_pauseTimer > 0) {
             m_pauseTimer--;
             return;
         }
-        // ÒÆ¶¯ÆÚ
-        m_moveLimit = rand() % 3 + 2; // Ëæ»úÒÆ¶¯´ÎÊıÏŞÖÆ£¨1-3´Î£©
+        // ç§»åŠ¨æœŸ
+        m_moveLimit = rand() % 3 + 2; // éšæœºç§»åŠ¨æ¬¡æ•°é™åˆ¶ï¼ˆ1-3æ¬¡ï¼‰
         if (abs(m_X - m_targetX) > 5 || abs(m_Y - m_targetY) > 5) {
-            // ÏòÄ¿±êÎ»ÖÃÒÆ¶¯
+            // å‘ç›®æ ‡ä½ç½®ç§»åŠ¨
             if (m_X < m_targetX) m_X += abs(m_SpeedX);
             else if (m_X > m_targetX) m_X -= abs(m_SpeedX);
 
@@ -94,23 +94,23 @@ void BossEirin::updatePosition()
             else if (m_Y > m_targetY) m_Y -= abs(m_SpeedY);
         }
         else {
-            // µ½´ïÄ¿±êÎ»ÖÃ£¬ÒÆ¶¯´ÎÊıÔö¼Ó
+            // åˆ°è¾¾ç›®æ ‡ä½ç½®ï¼Œç§»åŠ¨æ¬¡æ•°å¢åŠ 
             m_moveCounter++;
 
-            // Ã¿ÒÆ¶¯Èı´ÎºóÍ£Áô
+            // æ¯ç§»åŠ¨ä¸‰æ¬¡ååœç•™
             if (m_moveCounter >= m_moveLimit) {
                 m_moveCounter = 0;
-                m_pauseTimer = rand() % 60 + 30; // Í£Áô30-90Ö¡
+                m_pauseTimer = rand() % 60 + 30; // åœç•™30-90å¸§
             }
             else {
-                // ÉèÖÃĞÂµÄËæ»úÄ¿±êÎ»ÖÃ
+                // è®¾ç½®æ–°çš„éšæœºç›®æ ‡ä½ç½®
                 m_targetX = rand() % (GAME_WIDTH - m_Role.width());
-                m_targetY = 150 + rand() % 100; // ×İÏòĞ¡·¶Î§ÒÆ¶¯
+                m_targetY = 150 + rand() % 100; // çºµå‘å°èŒƒå›´ç§»åŠ¨
             }
         }
-        // ¸üĞÂ½ÇÉ«¾ØĞÎÎ»ÖÃ
+        // æ›´æ–°è§’è‰²çŸ©å½¢ä½ç½®
         m_Rect.moveTo(m_X, m_Y);
-        // ¸üĞÂÅö×²¿òÎ»ÖÃ
+        // æ›´æ–°ç¢°æ’æ¡†ä½ç½®
         m_collisionRect.moveTo(
             m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
             m_Y + (m_Rect.height() - m_collisionRect.height()) / 2
@@ -120,7 +120,7 @@ void BossEirin::updatePosition()
 
 void BossEirin::pattern1()
 {
-    // Ô²ĞÎµ¯Ä»
+    // åœ†å½¢å¼¹å¹•
     m_shootRecorderEnemy++;
     if (m_shootRecorderEnemy < BOSS_SHOOT_INTERVAL1) {
         return;
@@ -128,7 +128,7 @@ void BossEirin::pattern1()
 
     m_shootRecorderEnemy = 0;
 
-    int bulletsToShoot = 12; // 12·½Ïòµ¯Ä»
+    int bulletsToShoot = 12; // 12æ–¹å‘å¼¹å¹•
     double angleStep = 2 * M_PI / bulletsToShoot;
 
     for (int i = 0; i < bulletsToShoot; i++) {
@@ -151,7 +151,7 @@ void BossEirin::pattern1()
 
 void BossEirin::pattern2()
 {
-    // ÂİĞıµ¯Ä»
+    // èºæ—‹å¼¹å¹•
     m_shootRecorderEnemy++;
     if (m_shootRecorderEnemy < BOSS_SHOOT_INTERVAL2) {
         return;
@@ -190,7 +190,7 @@ void BossEirin::pattern2()
 
 void BossEirin::pattern3()
 {
-    // Ãé×¼Íæ¼ÒµÄµ¯Ä»
+    // ç„å‡†ç©å®¶çš„å¼¹å¹•
     m_shootRecorderEnemy++;
     if (m_shootRecorderEnemy < 20) {
         return;
@@ -198,12 +198,12 @@ void BossEirin::pattern3()
 
     m_shootRecorderEnemy = 0;
 
-    // ¼ÆËã³¯ÏòÍæ¼ÒµÄ½Ç¶È
+    // è®¡ç®—æœå‘ç©å®¶çš„è§’åº¦
     double deltaX = playerX - (m_X + m_Role.width() * 0.5);
     double deltaY = playerY - (m_Y + m_Role.height() * 0.5);
     double angle = atan2(deltaY, deltaX);
 
-    // ·¢Éä3·¢ÉÈĞÎµ¯Ä»
+    // å‘å°„3å‘æ‰‡å½¢å¼¹å¹•
     for (int i = -1; i <= 1; i++) {
         for (int j = 0; j < MAX_BULLETS; j++) {
             if (m_firstBullets[j].m_Free) {
@@ -216,7 +216,7 @@ void BossEirin::pattern3()
                 m_firstBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
                 m_firstBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
                 //m_firstBullets[j].m_Direction = CUSTOM;
-				m_firstBullets[j].isTracking = true; // ÉèÖÃÎª×·×ÙÄ£Ê½
+				m_firstBullets[j].isTracking = true; // è®¾ç½®ä¸ºè¿½è¸ªæ¨¡å¼
                 break;
             }
         }
