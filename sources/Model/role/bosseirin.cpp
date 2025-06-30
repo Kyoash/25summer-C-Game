@@ -206,17 +206,17 @@ void BossEirin::pattern3()
     // 发射3发扇形弹幕
     for (int i = -1; i <= 1; i++) {
         for (int j = 0; j < MAX_BULLETS; j++) {
-            if (m_firstBullets[j].m_Free) {
+            if (m_secondBullets[j].m_Free) {
                 //m_firstBullets[j].reset();
-                m_firstBullets[j].m_Free = false;
-                m_firstBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[j].m_Rect.width() * 0.5;
-                m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[j].m_Rect.height() * 0.5;
+                m_secondBullets[j].m_Free = false;
+                m_secondBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[j].m_Rect.width() * 0.5;
+                m_secondBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_secondBullets[j].m_Rect.height() * 0.5;
 
                 double bulletAngle = angle + i * 0.2;
-                m_firstBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
-                m_firstBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
+                m_secondBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
+                m_secondBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
                 //m_firstBullets[j].m_Direction = CUSTOM;
-				m_firstBullets[j].isTracking = true; // 设置为追踪模式
+                m_secondBullets[j].isTracking = true; // 设置为追踪模式
                 break;
             }
         }
