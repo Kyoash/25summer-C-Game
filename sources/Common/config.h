@@ -1,18 +1,23 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define MAP_PATH "" //鍦板浘鍥剧墖璺緞
+#define MAP_PATH ""
 #define GAME_RATE 10
 
 // 角色类型定义
 enum RoleType {
-	PLAYER_REIMU,  // 玩家
-	PLAYER_MARISA, 
-	BOSS_SAKURA, // 敌方Boss
-	BOSS_YOUMU,
+    PLAYER_REIMU,  // 玩家
+    PLAYER_MARISA,
+    BOSS_SAKURA, // 敌方Boss
+    BOSS_YOUMU,
     BOSS_EIRIN,
-	BOSS_KAGUYA,
-	NORMAL_ENEMY // 敌方普通敌机
+    BOSS_KAGUYA,
+    NORMAL_ENEMY // 敌方普通敌机
+};
+enum BulletType {
+    DEFAULT_BULLET,
+    BULLET_TYPE1,
+    BULLET_TYPE2
 };
 
 // 所有的贴图路径配置在这里
@@ -26,6 +31,37 @@ enum RoleType {
 #define SPELL_CIRCLE_SOURCE ":/res/ANM/ANM/etama/etama3.png"
 #define ENEMY_BOSS_BULLET_1_SOURCE ":/res/ANM/ANM/etama/etama.png"
 #define ENEMY_BOSS_BULLET_2_SOURCE ":/res/ANM/ANM/etama/etama6.png"
+
+// 子弹贴图路径 - 每个角色有三种子弹类型，从1开始计数
+#define REIMU_BULLET1_PATH ":/res/bullet/reimu_bullet1.png"
+#define REIMU_BULLET2_PATH ":/res/bullet/reimu_bullet2.png"
+#define REIMU_BULLET3_PATH ":/res/bullet/reimu_bullet3.png"
+
+#define MARISA_BULLET1_PATH ":/res/bullet/marisa_bullet1.png"
+#define MARISA_BULLET2_PATH ":/res/bullet/marisa_bullet2.png"
+#define MARISA_BULLET3_PATH ":/res/bullet/marisa_bullet3.png"
+
+#define SAKURA_BULLET1_PATH ":/res/bullet/sakura_bullet1.png"
+#define SAKURA_BULLET2_PATH ":/res/bullet/sakura_bullet2.png"
+#define SAKURA_BULLET3_PATH ":/res/bullet/sakura_bullet3.png"
+
+#define YOUMU_BULLET1_PATH ":/res/bullet/youmu_bullet1.png"
+#define YOUMU_BULLET2_PATH ":/res/bullet/youmu_bullet2.png"
+#define YOUMU_BULLET3_PATH ":/res/bullet/youmu_bullet3.png"
+
+#define EIRIN_BULLET1_PATH ":/res/bullet/eirin_bullet1.png"
+#define EIRIN_BULLET2_PATH ":/res/bullet/eirin_bullet2.png"
+#define EIRIN_BULLET3_PATH ":/res/bullet/eirin_bullet3.png"
+
+#define KAGUYA_BULLET1_PATH ":/res/bullet/kaguya_bullet1.png"
+#define KAGUYA_BULLET2_PATH ":/res/bullet/kaguya_bullet2.png"
+#define KAGUYA_BULLET3_PATH ":/res/bullet/kaguya_bullet3.png"
+
+#define ENEMY_BULLET1_PATH ":/res/bullet/enemy_bullet1.png"
+#define ENEMY_BULLET2_PATH ":/res/bullet/enemy_bullet2.png"
+#define ENEMY_BULLET3_PATH ":/res/bullet/enemy_bullet3.png"
+
+#define DEFAULT_BULLET_PATH ":/res/bullet/default.png"
 
 #define ITEM_SOURCE ":/res/ANM/ANM/etama/etama2.png"
 #define ASCII_SOURCE ":/res/ANM/ANM/ascii/ascii.png"
@@ -105,6 +141,7 @@ enum RoleType {
 #define SHIFTED_PLAYER_SPEED 8 // 玩家加速移动速度
 #define NORMAL_PLAYER_SPEED 4 // 玩家普通移动速度
 #define PLAYER_BULLET_SPEED 10  // 玩家普通子弹移动速度
+#define BOSS_BULLET_SPEED 10 // BOSS普通子弹移动速度
 
 // 所有的子弹尺寸信息
 #define PLAYER_BULLET_WIDTH 16 // 玩家子弹宽度

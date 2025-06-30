@@ -109,7 +109,7 @@ Role::Role(RoleType type) :
 
     // ³õÊ¼»¯×Óµ¯
     for (int i = 0; i < MAX_BULLETS; i++) {
-        m_firstBullets[i] = Bullet(m_type);
+        m_firstBullets[i] = Bullet(m_type, DEFAULT_BULLET);
     }
 }
 

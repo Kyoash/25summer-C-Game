@@ -29,7 +29,7 @@ void Reimu::shoot()
             if (m_power < 2) {
                 // 低火力 - 单发
                 m_firstBullets[i].m_Free = false;
-                m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - PLAYER_BULLET_WIDTH * 0.5;
+                m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[i].m_Rect.width() * 0.5;
                 m_firstBullets[i].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                 m_firstBullets[i].m_SpeedY = PLAYER_BULLET_SPEED;
 				m_firstBullets[i].m_SpeedX = 0;
@@ -41,14 +41,14 @@ void Reimu::shoot()
                 // 中火力 - 双发
                 if (i + 1 < BULLET_NUM && m_firstBullets[i + 1].m_Free) {
                     m_firstBullets[i].m_Free = false;
-                    m_firstBullets[i].m_X = m_X + m_Role.width() * 0.3 - PLAYER_BULLET_WIDTH * 0.5;
+                    m_firstBullets[i].m_X = m_X + m_Role.width() * 0.3 - m_firstBullets[i].m_Rect.width() * 0.5;
                     m_firstBullets[i].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                     m_firstBullets[i].m_SpeedY = PLAYER_BULLET_SPEED;
                     m_firstBullets[i].m_SpeedX = 0;
                     //m_firstBullets[i].m_Direction = UP;
 
                     m_firstBullets[i + 1].m_Free = false;
-                    m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.7 - PLAYER_BULLET_WIDTH * 0.5;
+                    m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.7 - m_firstBullets[i + 1].m_Rect.width() * 0.5;
                     m_firstBullets[i + 1].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                     m_firstBullets[i + 1].m_SpeedY = PLAYER_BULLET_SPEED;
                     m_firstBullets[i + 1].m_SpeedX = 0;
@@ -61,19 +61,19 @@ void Reimu::shoot()
                 // 高火力 - 三发
                 if (i + 2 < BULLET_NUM && m_firstBullets[i + 1].m_Free && m_firstBullets[i + 2].m_Free) {
                     m_firstBullets[i].m_Free = false;
-                    m_firstBullets[i].m_X = m_X + m_Role.width() * 0.2 - PLAYER_BULLET_WIDTH * 0.5;
+                    m_firstBullets[i].m_X = m_X + m_Role.width() * 0.2 - m_firstBullets[i].m_Rect.width() * 0.5;
                     m_firstBullets[i].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                     m_firstBullets[i].m_SpeedY = PLAYER_BULLET_SPEED;
                     m_firstBullets[i].m_SpeedX = 0;
 
                     m_firstBullets[i + 1].m_Free = false;
-                    m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.5 - PLAYER_BULLET_WIDTH * 0.5;
+                    m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[i + 1].m_Rect.width() * 0.5;
                     m_firstBullets[i + 1].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                     m_firstBullets[i + 1].m_SpeedY = PLAYER_BULLET_SPEED;
                     m_firstBullets[i + 1].m_SpeedX = 0;
 
                     m_firstBullets[i + 2].m_Free = false;
-                    m_firstBullets[i + 2].m_X = m_X + m_Role.width() * 0.8 - PLAYER_BULLET_WIDTH * 0.5;
+                    m_firstBullets[i + 2].m_X = m_X + m_Role.width() * 0.8 - m_firstBullets[i + 2].m_Rect.width() * 0.5;
                     m_firstBullets[i + 2].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                     m_firstBullets[i + 2].m_SpeedY = PLAYER_BULLET_SPEED;
                     m_firstBullets[i + 2].m_SpeedX = 0;
@@ -89,7 +89,7 @@ void Reimu::shoot()
         for (int i = 0; i < BULLET_NUM; i++) {
             if (m_firstBullets[i].m_Free) {
                 m_firstBullets[i].m_Free = false;
-                m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - PLAYER_BULLET_WIDTH * 0.5;
+                m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[i].m_Rect.width() * 0.5;
                 m_firstBullets[i].m_Y = m_Y - PLAYER_BULLET_HEIGHT;
                 m_firstBullets[i].m_SpeedY = PLAYER_BULLET_SPEED;
                 m_firstBullets[i].m_SpeedX = 0;

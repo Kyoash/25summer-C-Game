@@ -134,14 +134,14 @@ void BossEirin::pattern1()
     for (int i = 0; i < bulletsToShoot; i++) {
         for (int j = 0; j < BULLET_NUM_ENEMY; j++) {
             if (m_firstBullets[j].m_Free) {
-                m_firstBullets[j].reset();
+                //m_firstBullets[j].reset();
                 m_firstBullets[j].m_Free = false;
-                m_firstBullets[j].m_X = m_X + m_Role.width() * 0.5 - BULLET_WIDTH * 0.5;
-                m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - BULLET_HEIGHT * 0.5;
+                m_firstBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[j].m_Rect.width() * 0.5;
+                m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[j].m_Rect.height() * 0.5;
 
                 double angle = angleStep * i;
-                m_firstBullets[j].m_SpeedX = cos(angle) * BULLET_SPEED * 0.5;
-                m_firstBullets[j].m_SpeedY = sin(angle) * BULLET_SPEED * 0.5;
+                m_firstBullets[j].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED * 0.5;
+                m_firstBullets[j].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED * 0.5;
                 //m_firstBullets[j].m_Direction = CUSTOM;
                 break;
             }
@@ -161,22 +161,22 @@ void BossEirin::pattern2()
 
     for (int i = 0; i < BULLET_NUM_ENEMY; i++) {
         if (m_firstBullets[i].m_Free && i + 1 < BULLET_NUM && m_firstBullets[i + 1].m_Free) {
-            m_firstBullets[i].reset();
+            //m_firstBullets[i].reset();
             m_firstBullets[i].m_Free = false;
-            m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - BULLET_WIDTH * 0.5;
-            m_firstBullets[i].m_Y = m_Y + m_Role.height() * 0.5 - BULLET_HEIGHT * 0.5;
+            m_firstBullets[i].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[i].m_Rect.width() * 0.5;
+            m_firstBullets[i].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[i].m_Rect.height() * 0.5;
 
             double angle = m_spiralAngle;
-            m_firstBullets[i].m_SpeedX = cos(angle) * BULLET_SPEED * 0.6;
-            m_firstBullets[i].m_SpeedY = sin(angle) * BULLET_SPEED * 0.6;
+            m_firstBullets[i].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED * 0.6;
+            m_firstBullets[i].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED * 0.6;
 
-            m_firstBullets[i + 1].reset();
+            ///m_firstBullets[i + 1].reset();
             m_firstBullets[i + 1].m_Free = false;
-            m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.5 - BULLET_WIDTH * 0.5;
-            m_firstBullets[i + 1].m_Y = m_Y + m_Role.height() * 0.5 - BULLET_HEIGHT * 0.5;
+            m_firstBullets[i + 1].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[i + 1].m_Rect.width() * 0.5;
+            m_firstBullets[i + 1].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[i + 1].m_Rect.height() * 0.5;
 
-            m_firstBullets[i + 1].m_SpeedX = cos(angle + M_PI) * BULLET_SPEED * 0.6;
-            m_firstBullets[i + 1].m_SpeedY = sin(angle + M_PI) * BULLET_SPEED * 0.6;
+            m_firstBullets[i + 1].m_SpeedX = cos(angle + M_PI) * BOSS_BULLET_SPEED * 0.6;
+            m_firstBullets[i + 1].m_SpeedY = sin(angle + M_PI) * BOSS_BULLET_SPEED * 0.6;
             //m_firstBullets[i].m_Direction = CUSTOM;
 
             m_spiralAngle += 0.2;
@@ -207,14 +207,14 @@ void BossEirin::pattern3()
     for (int i = -1; i <= 1; i++) {
         for (int j = 0; j < MAX_BULLETS; j++) {
             if (m_firstBullets[j].m_Free) {
-                m_firstBullets[j].reset();
+                //m_firstBullets[j].reset();
                 m_firstBullets[j].m_Free = false;
-                m_firstBullets[j].m_X = m_X + m_Role.width() * 0.5 - BULLET_WIDTH * 0.5;
-                m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - BULLET_HEIGHT * 0.5;
+                m_firstBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_firstBullets[j].m_Rect.width() * 0.5;
+                m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[j].m_Rect.height() * 0.5;
 
                 double bulletAngle = angle + i * 0.2;
-                m_firstBullets[j].m_SpeedX = cos(bulletAngle) * BULLET_SPEED * 0.7;
-                m_firstBullets[j].m_SpeedY = sin(bulletAngle) * BULLET_SPEED * 0.7;
+                m_firstBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
+                m_firstBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
                 //m_firstBullets[j].m_Direction = CUSTOM;
 				m_firstBullets[j].isTracking = true; // 设置为追踪模式
                 break;
