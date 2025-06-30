@@ -34,10 +34,18 @@ public:
     // 游戏元素访问
     Map& map() { return m_map; }
     Reimu& reimu() { return m_reimu; }
+    Marisa& marisa() { return m_marisa; };
+    BossYoumu& bossyoumu() { return m_boss_youmu; };
+    BossSakuya& bosssakuya() { return m_boss_sakuya; };
+    BossKaguya& bosskaguya() { return m_boss_kaguya; };
     BossEirin& bosseirin() { return m_boss_eirin; }
+    RoleType& Now_Role() { return m_Now_Role; }
+    RoleType& Now_Boss() { return m_Now_Boss; }
+    int& Stage() { return m_Stage; }
+    int& enemyRecorder() { return m_enemyRecorder; }
 
     // 游戏控制
-    void initGame();
+    void initGame(RoleType role);
     void startGame();
 
     //玩家控制
@@ -61,7 +69,15 @@ private:
     // 游戏元素
     Map m_map;
     Reimu m_reimu;
+    Marisa m_marisa;
+    BossYoumu m_boss_youmu;
+    BossSakuya m_boss_sakuya;
+    BossKaguya m_boss_kaguya;
     BossEirin m_boss_eirin;
+    RoleType m_Now_Role = PLAYER_REIMU;
+    RoleType m_Now_Boss = BOSS_EIRIN;
+    int m_Stage = 1;//关卡
+    int m_enemyRecorder = 0;//分数
 
     // 游戏状态
     bool m_gameOver = false;

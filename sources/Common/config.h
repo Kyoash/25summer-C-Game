@@ -1,13 +1,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define MAP_PATH "" //鍦板浘鍥剧墖璺緞
-#define GAME_RATE 10
-<<<<<<< Updated upstream
-#define SHIFTED_SPEED 4
-#define NORMAL_SPEED 8
-=======
->>>>>>> Stashed changes
 // 角色类型定义
 enum RoleType {
 	PLAYER_REIMU,  // 玩家
@@ -19,7 +12,14 @@ enum RoleType {
 	NORMAL_ENEMY // 敌方普通敌机
 };
 
+//刷新间隔时间
+#define GAME_RATE 10
+
 // 所有的贴图路径配置在这里
+#define MAP_STAGE1_PATH ":/res/map/stagemap1.png" //GameWindow stage1背景贴图
+#define MAP_STAGE2_PATH ":/res/map/stagemap2.png" //GameWindow stage2背景贴图
+#define MAP_STAGE3_PATH ":/res/map/stagemap3.png" //GameWindow stage3背景贴图
+#define MAP_STAGE4_PATH ":/res/map/stagemap4.png" //GameWindow stage4背景贴图
 #define REIMU_PATH ":/res/role/reimu.png" // Player 角色贴图
 #define MARISA_PATH ":/res/role/marisa.png" // Player 角色贴图
 #define SAKURA_PATH ":/res/role/sakura.png" // Boss 角色贴图
