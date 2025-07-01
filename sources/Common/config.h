@@ -8,7 +8,7 @@
 enum RoleType {
     PLAYER_REIMU,  // 玩家
     PLAYER_MARISA,
-    BOSS_SAKURA, // 敌方Boss
+    BOSS_SAKUYA, // 敌方Boss
     BOSS_YOUMU,
     BOSS_EIRIN,
     BOSS_KAGUYA,
@@ -19,11 +19,16 @@ enum BulletType {
     BULLET_TYPE1,
     BULLET_TYPE2
 };
+enum LaserType {
+    ROTATION_LASER,
+    HORIZONTAL_LASER,
+    VERTICAL_LASER
+};
 
 // 所有的贴图路径配置在这里
 #define REIMU_PATH ":/res/role/reimu.png" // Player 角色贴图
 #define MARISA_PATH ":/res/role/marisa.png" // Player 角色贴图
-#define SAKURA_PATH ":/res/role/sakura.png" // Boss 角色贴图
+#define SAKUYA_PATH ":/res/role/sakuya.png" // Boss 角色贴图
 #define YOUMU_PATH ":/res/role/youmu.png" // Boss 角色贴图
 #define EIRIN_PATH ":/res/role/eirin.png" // Boss 角色贴图
 #define KAGUYA_PATH ":/res/role/kaguya.png" // Boss 角色贴图
@@ -41,9 +46,9 @@ enum BulletType {
 #define MARISA_BULLET2_PATH ":/res/bullet/marisa_bullet2.png"
 #define MARISA_BULLET3_PATH ":/res/bullet/marisa_bullet3.png"
 
-#define SAKURA_BULLET1_PATH ":/res/bullet/sakura_bullet1.png"
-#define SAKURA_BULLET2_PATH ":/res/bullet/sakura_bullet2.png"
-#define SAKURA_BULLET3_PATH ":/res/bullet/sakura_bullet3.png"
+#define SAKUYA_BULLET1_PATH ":/res/bullet/sakuya_bullet1.png"
+#define SAKUYA_BULLET2_PATH ":/res/bullet/sakuya_bullet2.png"
+#define SAKUYA_BULLET3_PATH ":/res/bullet/sakuya_bullet3.png"
 
 #define YOUMU_BULLET1_PATH ":/res/bullet/youmu_bullet1.png"
 #define YOUMU_BULLET2_PATH ":/res/bullet/youmu_bullet2.png"
@@ -62,6 +67,17 @@ enum BulletType {
 #define ENEMY_BULLET3_PATH ":/res/bullet/enemy_bullet3.png"
 
 #define DEFAULT_BULLET_PATH ":/res/bullet/default.png"
+// 激光贴图路径
+#define REIMU_LASER_PATH ":/res/bullet/reimu_laser.png"
+#define MARISA_LASER_PATH ":/res/bullet/marisa_laser.png"
+#define SAKUYA_LASER_PATH ":/res/bullet/sakuya_laser.png"
+#define YOUMU_LASER_PATH ":/res/bullet/youmu_laser.png"
+#define EIRIN_LASER_PATH ":/res/bullet/eirin_laser.png"
+#define KAGUYA_LASER_PATH ":/res/bullet/kaguya_laser.png"
+#define ENEMY_LASER_PATH ":/res/bullet/enemy_laser.png"
+#define DEFAULT_LASER_PATH ":/res/bullet/default_laser.png"
+
+// 其他贴图路径
 
 #define ITEM_SOURCE ":/res/ANM/ANM/etama/etama2.png"
 #define ASCII_SOURCE ":/res/ANM/ANM/ascii/ascii.png"
@@ -98,7 +114,7 @@ enum BulletType {
 
 // 游戏地图配置
 #define GAME_WIDTH 600  // 游戏窗口宽度
-#define GAME_HEIGHT 800 // 游戏窗口高度
+#define GAME_HEIGHT 900 // 游戏窗口高度
 #define GAME_TITLE "东方永夜抄" // 标题
 
 // 角色碰撞尺寸配置
@@ -126,6 +142,9 @@ enum BulletType {
 #define BOSS_SHOOT_INTERVAL1 15 // Boss一阶段射击间隔
 #define BOSS_SHOOT_INTERVAL2 5 // Boss二阶段射击间隔
 #define BOSS_SHOOT_INTERVAL3 10 // Boss三阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL1 10 // Boss Kaguya 一阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL2 8 // Boss Kaguya 二阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL3 12 // Boss Kaguya 三阶段射击间隔
 
 // 敌机配置数据 
 #define ENEMY_SPEED 4  // 敌机移动速度
@@ -147,5 +166,8 @@ enum BulletType {
 // 所有的子弹尺寸信息
 #define PLAYER_BULLET_WIDTH 16 // 玩家子弹宽度
 #define PLAYER_BULLET_HEIGHT 16 // 玩家子弹高度
+
+// 激光信息
+#define MAX_LASERS 16 // 最大激光数量
 
 #endif // CONFIG_H

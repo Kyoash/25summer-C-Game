@@ -22,8 +22,8 @@ Role::Role(RoleType type) :
     case PLAYER_MARISA:
         m_Role.load(MARISA_PATH);
         break;
-    case BOSS_SAKURA:
-        m_Role.load(SAKURA_PATH);
+    case BOSS_SAKUYA:
+        m_Role.load(SAKUYA_PATH);
         break;
     case BOSS_YOUMU:
         m_Role.load(YOUMU_PATH);
@@ -58,7 +58,7 @@ Role::Role(RoleType type) :
         m_Free = false; // 玩家初始为非空闲状态
         break;
 
-    case BOSS_SAKURA:
+    case BOSS_SAKUYA:
     case BOSS_YOUMU:
     case BOSS_EIRIN:
     case BOSS_KAGUYA:
@@ -92,11 +92,11 @@ Role::Role(RoleType type) :
 
     // 初始化碰撞矩形
     // 对于Boss使用更大的碰撞框
-    if (m_type >= BOSS_SAKURA && m_type <= BOSS_KAGUYA) {
+    if (m_type >= BOSS_SAKUYA && m_type <= BOSS_KAGUYA) {
         m_collisionRect.setWidth(BOSS_COLLISION_WIDTH);
         m_collisionRect.setHeight(BOSS_COLLISION_HEIGHT);
     }
-    else if (m_type < BOSS_SAKURA) {
+    else if (m_type < BOSS_SAKUYA) {
         m_collisionRect.setWidth(ROLE_COLLISION_WIDTH);
         m_collisionRect.setHeight(ROLE_COLLISION_HEIGHT);
     }
@@ -142,7 +142,7 @@ void Role::reset()
             m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
         break;
 
-    case BOSS_SAKURA:
+    case BOSS_SAKUYA:
     case BOSS_YOUMU:
     case BOSS_EIRIN:
     case BOSS_KAGUYA:

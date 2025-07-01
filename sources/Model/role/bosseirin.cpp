@@ -10,8 +10,8 @@ BossEirin::BossEirin() : Role(BOSS_EIRIN)
     m_currentPattern = 1;
     m_patternTimer = 0;
     m_spiralAngle = 0;
-    m_SpeedX = 3; // Boss移动速度
-    m_SpeedY = 0; // Boss初始不垂直移动
+    m_SpeedX = rand() % 5 + 5; // 随机速度
+    m_SpeedY = rand() % 3 + 3; // 随机速度
     m_pauseTimer = 0; // 停留计时器
     m_moveCounter = 0; // 移动次数计数
 	m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // 随机目标X位置
@@ -66,7 +66,7 @@ void BossEirin::updatePosition()
 		// 每移动几次后停留一段时间
         if(m_moveCounter >= m_moveLimit) {
             m_moveCounter = 0;
-            m_pauseTimer = rand() % 60 + 30; // 停留30-90帧
+            m_pauseTimer = rand() % 60 + 90; // 停留90-150帧
 			m_moveLimit = rand() % 3 + 1; // 随机下次移动次数限制（1-3次）
 		}
         m_X += m_Speed;
@@ -104,6 +104,8 @@ void BossEirin::updatePosition()
             }
             else {
                 // 设置新的随机目标位置
+                m_SpeedX = rand() % 10 + 10; // 随机速度
+                m_SpeedY = rand() % 3 + 3; // 随机速度
                 m_targetX = rand() % (GAME_WIDTH - m_Role.width());
                 m_targetY = 150 + rand() % 100; // 纵向小范围移动
             }

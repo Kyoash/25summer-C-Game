@@ -47,16 +47,16 @@ Bullet::Bullet(RoleType rtype, BulletType btype) :
         }
         break;
 
-    case BOSS_SAKURA:
+    case BOSS_SAKUYA:
         switch(m_type) {
         case DEFAULT_BULLET:
-            m_Bullet.load(SAKURA_BULLET1_PATH);
+            m_Bullet.load(SAKUYA_BULLET1_PATH);
             break;
         case BULLET_TYPE1:
-            m_Bullet.load(SAKURA_BULLET2_PATH);
+            m_Bullet.load(SAKUYA_BULLET2_PATH);
             break;
         case BULLET_TYPE2:
-            m_Bullet.load(SAKURA_BULLET3_PATH);
+            m_Bullet.load(SAKUYA_BULLET3_PATH);
             break;
         }
         break;
@@ -127,13 +127,21 @@ Bullet::Bullet(RoleType rtype, BulletType btype) :
     m_collisionRect = QRect(m_X, m_Y, 0.75 * m_Bullet.width(), 0.75 * m_Bullet.height());
 
     // 根据角色类型设置默认速度
-    if(role_type == PLAYER_REIMU || role_type == PLAYER_MARISA) {
-        m_Speed = PLAYER_BULLET_SPEED;
+    if(role_type == PLAYER_REIMU) {
+        m_Speed = PLAYER_REIMU_BULLET_SPEED;
+    }else if(role_type == PLAYER_MARISA){
+        m_Speed = PLAYER_MARISA_BULLET_SPEED;
     }
 
     // 记录初始速度方向
-    m_InitSpeedX = m_SpeedX;
-    m_InitSpeedY = m_SpeedY;
+    if(role_type != PLAYER_REIMU && role_type != PLAYER_MARISA){
+        m_InitSpeedX = m_SpeedX;
+        m_InitSpeedY = m_SpeedY;
+    }else{
+        m_InitSpeedY = m_Speed;
+        m_InitSpeedX = 0;
+    }
+    
 }
 
 void Bullet::updatePosition()

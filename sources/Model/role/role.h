@@ -62,7 +62,8 @@ public:
     int m_shootRecorderPlayer; // 发射间隔记录
 
     // 敌机专用属性
-    int m_shootRecorderEnemy;
+    int m_shootRecorderEnemy; // 子弹
+    int m_shootRecorderEnemy2; // 激光
 
     // 添加状态标志
     bool m_Free;  // 是否空闲（未被使用）
