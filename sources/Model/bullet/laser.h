@@ -7,6 +7,7 @@
 #include <QPoint>
 #include <QRect>
 #include <QtMath>
+#include <QTransform>
 #include "../../common/config.h"
 #include "../role/role.h"
 

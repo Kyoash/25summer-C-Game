@@ -48,6 +48,10 @@ Laser::Laser(RoleType type, LaserType laserType) :
         m_Rect = QRect(m_X, m_Y, m_Laser.width(), GAME_HEIGHT * 3);
         m_collisionRect = QRect(m_X, m_Y, m_Laser.width() * 0.8, GAME_HEIGHT * 3);
     }else if(laser_type == HORIZONTAL_LASER){
+        // 创建旋转变换
+        QTransform transform;
+        transform.rotate(90);
+        m_Laser = m_Laser.transformed(transform);
         m_Rect = QRect(m_X, m_Y, GAME_WIDTH * 3, m_Laser.height());
         m_collisionRect = QRect(m_X, m_Y, GAME_WIDTH * 3, m_Laser.height() * 0.8);
     }else if(laser_type == ROTATION_LASER){

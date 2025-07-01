@@ -56,11 +56,16 @@ void BossEirin::updatePosition()
             return;
         }
         // 移动期
-        if (m_X <= 0) {
-            m_SpeedX = abs(m_SpeedX);
+        if (m_X <= GAME_WIDTH - m_Role.width() / 4) {
+            if(m_SpeedX < 0){
+                m_SpeedX = abs(m_SpeedX);
+            }
+            m_moveCounter++;
         }
-        else if (m_X >= GAME_WIDTH - m_Role.width()) {
-            m_SpeedX = -abs(m_SpeedX);
+        else if (m_X >= GAME_WIDTH - m_Role.width() * 3 / 4) {
+            if(m_SpeedX > 0){
+                m_SpeedX = -abs(m_SpeedX);
+            }
             m_moveCounter++;
         }
 		// 每移动几次后停留一段时间
@@ -69,7 +74,7 @@ void BossEirin::updatePosition()
             m_pauseTimer = rand() % 60 + 90; // 停留90-150帧
 			m_moveLimit = rand() % 3 + 1; // 随机下次移动次数限制（1-3次）
 		}
-        m_X += m_Speed;
+        m_X += m_SpeedX;
         m_Rect.moveTo(m_X, m_Y);
 
         // 更新碰撞框位置

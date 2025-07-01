@@ -160,8 +160,8 @@ enum LaserType {
 #define ENEMY_COLLISION_HEIGHT 64 // 敌机碰撞矩形高度
 
 // 所有的移动速度信息
-#define SHIFTED_PLAYER_SPEED 8 // 玩家加速移动速度
-#define NORMAL_PLAYER_SPEED 4 // 玩家普通移动速度
+#define SHIFTED_PLAYER_SPEED 16 // 玩家加速移动速度
+#define NORMAL_PLAYER_SPEED 8 // 玩家普通移动速度
 #define PLAYER_REIMU_BULLET_SPEED 10 // 玩家Reimu子弹移动速度
 #define PLAYER_MARISA_BULLET_SPEED 8 // 玩家Marisa子弹移动速度
 #define BOSS_BULLET_SPEED 10 // BOSS普通子弹移动速度
