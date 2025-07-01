@@ -6,17 +6,17 @@
 BossEirin::BossEirin() : Role(BOSS_EIRIN)
 {
     // Boss行为相关
-	srand(time(NULL)); // 初始化随机数种子
+    srand(time(NULL)); // 初始化随机数种子
     m_currentPattern = 1;
     m_patternTimer = 0;
     m_spiralAngle = 0;
-    m_SpeedX = rand() % 5 + 5; // 随机速度
-    m_SpeedY = rand() % 3 + 3; // 随机速度
+    m_SpeedX = rand() % 10 + -5; // 随机速度
+    m_SpeedY = rand() % 6 + -3; // 随机速度
     m_pauseTimer = 0; // 停留计时器
     m_moveCounter = 0; // 移动次数计数
-	m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // 随机目标X位置
-	m_targetY = 150 + rand() % 100; // 随机目标Y位置（150-250像素）
-	m_moveLimit = rand() % 3 + 1; // 随机移动次数限制（1-3次）
+    m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // 随机目标X位置
+    m_targetY = 150 + rand() % 100; // 随机目标Y位置（150-250像素）
+    m_moveLimit = rand() % 3 + 1; // 随机移动次数限制（1-3次）
 }
 
 void BossEirin::shoot()
@@ -56,30 +56,33 @@ void BossEirin::updatePosition()
             return;
         }
         // 移动期
-        if (m_X <= GAME_WIDTH - m_Role.width() / 4) {
-            if(m_SpeedX < 0){
-                m_SpeedX = abs(m_SpeedX);
-            }
-            m_moveCounter++;
-        }
-        else if (m_X >= GAME_WIDTH - m_Role.width() * 3 / 4) {
+
+            m_X += m_SpeedX;
+        if (m_X >= (GAME_WIDTH - m_Role.width()) * 3 / 4) {
+            m_SpeedX = rand() % 10 + -5;
             if(m_SpeedX > 0){
                 m_SpeedX = -abs(m_SpeedX);
             }
             m_moveCounter++;
         }
-		// 每移动几次后停留一段时间
+        else if (m_X <= (GAME_WIDTH - m_Role.width()) / 4) {
+            m_SpeedX = rand() % 10 + -5;
+            if(m_SpeedX < 0){
+                m_SpeedX = abs(m_SpeedX);
+            }
+            m_moveCounter++;
+        }
+        // 每移动几次后停留一段时间
         if(m_moveCounter >= m_moveLimit) {
             m_moveCounter = 0;
             m_pauseTimer = rand() % 60 + 90; // 停留90-150帧
-			m_moveLimit = rand() % 3 + 1; // 随机下次移动次数限制（1-3次）
-		}
-        m_X += m_SpeedX;
+            m_moveLimit = rand() % 3 + 1; // 随机下次移动次数限制（1-3次）
+        }
         m_Rect.moveTo(m_X, m_Y);
 
         // 更新碰撞框位置
         m_collisionRect.moveTo(m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
-            m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
+                               m_Y + (m_Rect.height() - m_collisionRect.height()) / 2);
     }
     else if (m_currentPattern >= 2) {
         // Partten23 Boss随机方向移动（水平大幅度，纵向小幅度，每移动三次后在一个位置停留一段时间）
@@ -109,9 +112,9 @@ void BossEirin::updatePosition()
             }
             else {
                 // 设置新的随机目标位置
-                m_SpeedX = rand() % 10 + 10; // 随机速度
+                m_SpeedX = rand() % 5 + 5; // 随机速度
                 m_SpeedY = rand() % 3 + 3; // 随机速度
-                m_targetX = rand() % (GAME_WIDTH - m_Role.width());
+                m_targetX = rand() % (GAME_WIDTH - m_collisionRect.width()) + m_collisionRect.width() / 2; // 横向范围移动
                 m_targetY = 150 + rand() % 100; // 纵向小范围移动
             }
         }
@@ -121,8 +124,8 @@ void BossEirin::updatePosition()
         m_collisionRect.moveTo(
             m_X + (m_Rect.width() - m_collisionRect.width()) / 2,
             m_Y + (m_Rect.height() - m_collisionRect.height()) / 2
-        );
-	}
+            );
+    }
 }
 
 void BossEirin::pattern1()
