@@ -24,8 +24,8 @@ BossKaguya::BossKaguya() : Role(BOSS_KAGUYA)
     
     // 初始化激光数组
     for (int i = 0; i < MAX_LASERS; i++) {
-        m_lasers[i] = new Laser(BOSS_KAGUYA, VERTICAL_LASER);
-        m_lasers[i]->setMaxMoveDistance(GAME_WIDTH * 3 / 5); // 激光移动距离限制为屏幕宽度的3/5
+        m_laser[i] = new Laser(BOSS_KAGUYA, VERTICAL_LASER);
+        m_laser[i]->setMaxMoveDistance(GAME_WIDTH * 3 / 5); // 激光移动距离限制为屏幕宽度的3/5
     }
 
 }
@@ -116,8 +116,8 @@ void BossKaguya::updatePosition()
     
     // 更新激光位置
     for (int i = 0; i < MAX_LASERS; i++) {
-        if (!m_lasers[i]->isFree()) {
-            m_lasers[i]->updatePosition();
+        if (!m_laser[i]->isFree()) {
+            m_laser[i]->updatePosition();
         }
     }
 }
@@ -167,21 +167,21 @@ void BossKaguya::pattern2()
         if (m_shootRecorderEnemy2 % 80 == 0) { // 每80帧发射一组激光
             // 发射一侧激光，交替进行
             for (int i = 0; i < MAX_LASERS; i++) {
-                if (m_lasers[i]->isFree()) {
-                    m_lasers[i]->reset();
-                    m_lasers[i]->m_Free = false;
+                if (m_laser[i]->isFree()) {
+                    m_laser[i]->reset();
+                    m_laser[i]->m_Free = false;
                     if (!m_lastLaserFromLeft) {
                         // 发射左侧激光
-                        m_lasers[i]->m_X = 0;
-                        m_lasers[i]->setSpeedX(4); // 向右移动
+                        m_laser[i]->m_X = 0;
+                        m_laser[i]->setSpeedX(4); // 向右移动
                     } else {
                         // 发射右侧激光
-                        m_lasers[i]->m_X = GAME_WIDTH - m_lasers[i]->m_Laser.width();
-                        m_lasers[i]->setSpeedX(-4); // 向左移动
+                        m_laser[i]->m_X = GAME_WIDTH - m_laser[i]->m_Laser.width();
+                        m_laser[i]->setSpeedX(-4); // 向左移动
                     }
                     
-                    m_lasers[i]->m_Y = GAME_HEIGHT / 2 - m_lasers[i]->m_Laser.height() / 2;
-                    m_lasers[i]->laser_type = VERTICAL_LASER;
+                    m_laser[i]->m_Y = GAME_HEIGHT / 2 - m_laser[i]->m_Laser.height() / 2;
+                    m_laser[i]->laser_type = VERTICAL_LASER;
 
                     // 交替标志切换
                     m_lastLaserFromLeft = !m_lastLaserFromLeft;
