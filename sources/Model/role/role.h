@@ -12,56 +12,61 @@ class Role
 public:
     Role(RoleType type = PLAYER_REIMU);
 
-    // ·¢Éä×Óµ¯
+    // å‘å°„å­å¼¹
     virtual void shoot() {};
-    // ÉèÖÃÎ»ÖÃ
+    // è®¾ç½®ä½ç½®
     void setPosition(int x, int y);
-    // ¸üĞÂ×ø±ê
+    // æ›´æ–°åæ ‡
     virtual void updatePosition() {};
-    // ÖØÖÃ×´Ì¬
+    // é‡ç½®çŠ¶æ€
     void reset();
     void resetWithoutBullets();
-    // »ñÈ¡roleÀàĞÍ
+    // è·å–roleç±»å‹
     RoleType getType() const { return m_type; }
+    // ä½¿ç”¨æŠ€èƒ½
+    virtual void useSpellCard() {};
 
 public:
-	// »ñÈ¡½ÇÉ«ÀàĞÍ
+	// è·å–è§’è‰²ç±»å‹
     RoleType m_type;
 
-    // Role×ÊÔ´¶ÔÏó
+    // Roleèµ„æºå¯¹è±¡
     QPixmap m_Role;
 
-    // ×ø±ê
+    // åæ ‡
     int m_X;
     int m_Y;
 
-	// ¾ØĞÎ±ß¿ò£¬ÓÃÓÚÅö×²¼ì²â
+	// çŸ©å½¢è¾¹æ¡†ï¼Œç”¨äºç¢°æ’æ£€æµ‹
     QRect m_Rect;
 
-    // µ¯Ï»
-    Bullet m_firstBullets[MAX_BULLETS]; // Ê¹ÓÃ×î´óÊıÁ¿
+    // å¼¹åŒ£
+    Bullet m_firstBullets[MAX_BULLETS]; // ä½¿ç”¨æœ€å¤§æ•°é‡
+    // è¿½è¸ªå¼¹å¤¹
+    Bullet m_secondBullets[MAX_BULLETS]; 
 
-    // ÉúÃüÖµ
+    // ç”Ÿå‘½å€¼
     int m_life;
     int m_maxLife;
-    // spell ¼¼ÄÜ²Û
+    // spell æŠ€èƒ½æ§½
 	int m_spell; 
 	int m_maxSpell;
 
-    // Åö×²Ìå»ı
+    // ç¢°æ’ä½“ç§¯
     QRect m_collisionRect;
 
-	// ÒÆ¶¯ËÙ¶È
+	// ç§»åŠ¨é€Ÿåº¦
     int m_Speed;
 
-    // Íæ¼Ò×¨ÓÃÊôĞÔ
-    int m_shootRecorderPlayer; // ·¢Éä¼ä¸ô¼ÇÂ¼
+    // ç©å®¶ä¸“ç”¨å±æ€§
+    int m_shootRecorderPlayer; // å‘å°„é—´éš”è®°å½•
 
-    // µĞ»ú×¨ÓÃÊôĞÔ
-    int m_shootRecorderEnemy;
+    // æ•Œæœºä¸“ç”¨å±æ€§
+    int m_shootRecorderEnemy; // å­å¼¹
+    int m_shootRecorderEnemy2; // æ¿€å…‰
 
-    // Ìí¼Ó×´Ì¬±êÖ¾
-    bool m_Free;  // ÊÇ·ñ¿ÕÏĞ£¨Î´±»Ê¹ÓÃ£©
+    // æ·»åŠ çŠ¶æ€æ ‡å¿—
+    bool m_Free;  // æ˜¯å¦ç©ºé—²ï¼ˆæœªè¢«ä½¿ç”¨ï¼‰
 };
 
-#endif // PLANE_H
+#endif // ROLE_H

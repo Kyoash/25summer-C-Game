@@ -1,3 +1,4 @@
 res/
 build/
 .qtc_clangd/
+.vs/

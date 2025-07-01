@@ -13,7 +13,6 @@
 #include "bullet/laser.h"
 #include "bullet/spell.h"
 #include "bomb.h"
-#include "collisiondetect.h"
 #include "item.h"
 #include "map.h"
 #include "scoremanager.h"
@@ -30,6 +29,8 @@ public:
 
     // 游戏状态
     bool gameOver() const { return m_gameOver; }
+    bool showCollisionBoxes() const { return m_showCollisionBoxes; }
+    bool paused() const { return m_paused; }
 
     // 游戏元素访问
     Map& map() { return m_map; }
@@ -47,6 +48,9 @@ public:
     // 游戏控制
     void initGame(RoleType role);
     void startGame();
+    void pauseGame();//暂停游戏
+    void resumeGame();//继续游戏
+    void changeStage(int next_stage);//更换关卡
 
     //玩家控制
     void setMoveLeft(bool move) { m_moveLeft = move; }
@@ -59,12 +63,24 @@ public:
 
 signals:
     void updateView();
+    void gamePaused(bool isPaused);
 
 public slots:
     void updateGameState();
 
 private:
+    //刷新各个元素
     void updatePositions();
+    //碰撞检测
+    void collisionDetection();
+    void collision_reimu_youmu();
+    void collision_reimu_sakuya();
+    void collision_reimu_kaguya();
+    void collision_reimu_eirin();
+    void collision_marisa_youmu();
+    void collision_marisa_sakuya();
+    void collision_marisa_kaguya();
+    void collision_marisa_eirin();
 
     // 游戏元素
     Map m_map;
@@ -80,8 +96,9 @@ private:
     int m_enemyRecorder = 0;//分数
 
     // 游戏状态
-    bool m_gameOver = false;
-    bool m_showCollisionBoxes = false;
+    bool m_gameOver = false;//游戏结束
+    bool m_showCollisionBoxes = false;//显示碰撞箱
+    bool m_paused = false;//游戏暂停
 
     // 控制状态
     bool m_moveLeft = false;

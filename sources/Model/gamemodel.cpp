@@ -31,6 +31,7 @@ void GameModel::initGame(RoleType role)
     //游戏状态
     m_gameOver = false;
     m_showCollisionBoxes = false;
+    m_paused = false;
     //初始化角色及关卡数
     m_Now_Role = role;
     m_Now_Boss = BOSS_EIRIN;
@@ -41,6 +42,7 @@ void GameModel::initGame(RoleType role)
 void GameModel::updateGameState()
 {
     updatePositions();
+    collisionDetection();
     emit updateView();
 }
 
@@ -114,26 +116,98 @@ void GameModel::updatePositions()
     }
 
     // 更新自机子弹位置
+    switch(m_Now_Role){
+    case PLAYER_REIMU:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_reimu.m_firstBullets[i].m_Free) {
+                m_reimu.m_firstBullets[i].updatePosition();
+            }
+            if (!m_reimu.m_secondBullets[i].m_Free) {
+                m_reimu.m_secondBullets[i].updatePosition();
+            }
+        }
+        break;
+    case PLAYER_MARISA:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_marisa.m_firstBullets[i].m_Free) {
+                m_marisa.m_firstBullets[i].updatePosition();
+            }
+            if (!m_marisa.m_secondBullets[i].m_Free) {
+                m_marisa.m_secondBullets[i].updatePosition();
+            }
+        }
+        break;
+    default:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_reimu.m_firstBullets[i].m_Free) {
+                m_reimu.m_firstBullets[i].updatePosition();
+            }
+            if (!m_reimu.m_secondBullets[i].m_Free) {
+                m_reimu.m_secondBullets[i].updatePosition();
+            }
+        }
+        break;
+    }
 
-    // 更新敌机位置和子弹
+    // 更新Boss子弹位置，更新boss位置，发射子弹
     switch(m_Now_Boss){
-    case BOSS_SAKURA:
+    case BOSS_SAKUYA:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_boss_sakuya.m_firstBullets[i].m_Free) {
+                m_boss_sakuya.m_firstBullets[i].updatePosition();
+            }
+            if (!m_boss_sakuya.m_secondBullets[i].m_Free) {
+                m_boss_sakuya.m_secondBullets[i].updatePosition();
+            }
+        }
         m_boss_sakuya.updatePosition();
         m_boss_sakuya.shoot();
         break;
     case BOSS_YOUMU:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_boss_youmu.m_firstBullets[i].m_Free) {
+                m_boss_youmu.m_firstBullets[i].updatePosition();
+            }
+            if (!m_boss_youmu.m_secondBullets[i].m_Free) {
+                m_boss_youmu.m_secondBullets[i].updatePosition();
+            }
+        }
         m_boss_youmu.updatePosition();
         m_boss_youmu.shoot();
         break;
     case BOSS_EIRIN:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_boss_eirin.m_firstBullets[i].m_Free) {
+                m_boss_eirin.m_firstBullets[i].updatePosition();
+            }
+            if (!m_boss_eirin.m_secondBullets[i].m_Free) {
+                m_boss_eirin.m_secondBullets[i].updatePosition();
+            }
+        }
         m_boss_eirin.updatePosition();
         m_boss_eirin.shoot();
         break;
     case BOSS_KAGUYA:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_boss_kaguya.m_firstBullets[i].m_Free) {
+                m_boss_kaguya.m_firstBullets[i].updatePosition();
+            }
+            if (!m_boss_kaguya.m_secondBullets[i].m_Free) {
+                m_boss_kaguya.m_secondBullets[i].updatePosition();
+            }
+        }
         m_boss_kaguya.updatePosition();
         m_boss_kaguya.shoot();
         break;
     default:
+        for (int i = 0; i < MAX_BULLETS; i++) {
+            if (!m_boss_eirin.m_firstBullets[i].m_Free) {
+                m_boss_eirin.m_firstBullets[i].updatePosition();
+            }
+            if (!m_boss_eirin.m_secondBullets[i].m_Free) {
+                m_boss_eirin.m_secondBullets[i].updatePosition();
+            }
+        }
         m_boss_eirin.updatePosition();
         m_boss_eirin.shoot();
         break;
@@ -142,4 +216,29 @@ void GameModel::updatePositions()
 
     // 更新爆炸效果
 
+}
+
+void GameModel::changeStage(int next_stage){
+    m_gameTimer.stop();
+    switch(next_stage){
+
+    }
+}
+
+void GameModel::pauseGame()
+{
+    if (!m_paused) {
+        m_gameTimer.stop();
+        m_paused = true;
+        emit gamePaused(true);
+    }
+}
+
+void GameModel::resumeGame()
+{
+    if (m_paused) {
+        m_gameTimer.start(GAME_RATE);
+        m_paused = false;
+        emit gamePaused(false);
+    }
 }
