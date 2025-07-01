@@ -45,7 +45,7 @@ private:
     bool m_isLaserActive; // 激光是否激活
     int m_laserDuration;  // 激光持续时间
     int m_laserTimer;     // 激光计时器
-    Laser m_laser[MAX_LASERS]; // 辉夜激光array
+    Laser* m_laser[MAX_LASERS]; // 辉夜激光array
     bool m_lastLaserFromLeft = false; // 上一次激光是从左边还是右边发射的
 };
 
