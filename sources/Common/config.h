@@ -1,15 +1,17 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-// ½ĒÉ«ĄąŠĶ¶ØŅå
+#define GAME_RATE 25 // 游戏帧率，每秒40帧
+
+// 角色类型定义
 enum RoleType {
-    PLAYER_REIMU,  // ē©å®¶
+    PLAYER_REIMU,  // 玩家
     PLAYER_MARISA,
-    BOSS_SAKUYA, // ęę¹Boss
+    BOSS_SAKUYA, // 敌方Boss
     BOSS_YOUMU,
     BOSS_EIRIN,
     BOSS_KAGUYA,
-    NORMAL_ENEMY // ęę¹ę®éęęŗ
+    NORMAL_ENEMY // 敌方普通敌机
 };
 enum BulletType {
     DEFAULT_BULLET,
@@ -22,24 +24,23 @@ enum LaserType {
     VERTICAL_LASER
 };
 
-#define GAME_RATE 10
-// ęęēč““å¾č·Æå¾éē½®åØčæé
+// 所有的贴图路径配置在这里
 #define MAP_STAGE1_PATH ":/res/map/stagemap1.png"
 #define MAP_STAGE2_PATH ":/res/map/stagemap2.png"
 #define MAP_STAGE3_PATH ":/res/map/stagemap3.png"
 #define MAP_STAGE4_PATH ":/res/map/stagemap4.png"
-#define REIMU_PATH ":/res/role/reimu.png" // Player č§č²č““å¾
-#define MARISA_PATH ":/res/role/marisa.png" // Player č§č²č““å¾
-#define SAKUYA_PATH ":/res/role/sakuya.png" // Boss č§č²č““å¾
-#define YOUMU_PATH ":/res/role/youmu.png" // Boss č§č²č““å¾
-#define EIRIN_PATH ":/res/role/eirin.png" // Boss č§č²č““å¾
-#define KAGUYA_PATH ":/res/role/kaguya.png" // Boss č§č²č““å¾
-#define ENEMY_PATH ":/res/role/enemy.png" // ęęŗč““å¾
+#define REIMU_PATH ":/res/role/reimu.png" // Player 角色贴图
+#define MARISA_PATH ":/res/role/marisa.png" // Player 角色贴图
+#define SAKUYA_PATH ":/res/role/sakuya.png" // Boss 角色贴图
+#define YOUMU_PATH ":/res/role/youmu.png" // Boss 角色贴图
+#define EIRIN_PATH ":/res/role/eirin.png" // Boss 角色贴图
+#define KAGUYA_PATH ":/res/role/kaguya.png" // Boss 角色贴图
+#define ENEMY_PATH ":/res/role/enemy.png" // 敌机贴图
 #define SPELL_CIRCLE_SOURCE ":/res/ANM/ANM/etama/etama3.png"
 #define ENEMY_BOSS_BULLET_1_SOURCE ":/res/ANM/ANM/etama/etama.png"
 #define ENEMY_BOSS_BULLET_2_SOURCE ":/res/ANM/ANM/etama/etama6.png"
 
-// å­å¼¹č““å¾č·Æå¾ - ęÆäøŖč§č²ęäøē§å­å¼¹ē±»åļ¼ä»1å¼å§č®”ę°
+// 子弹贴图路径 - 每个角色有三种子弹类型，从1开始计数
 #define REIMU_BULLET1_PATH ":/res/bullet/reimu_bullet1.png"
 #define REIMU_BULLET2_PATH ":/res/bullet/reimu_bullet2.png"
 #define REIMU_BULLET3_PATH ":/res/bullet/reimu_bullet3.png"
@@ -69,7 +70,7 @@ enum LaserType {
 #define ENEMY_BULLET3_PATH ":/res/bullet/enemy_bullet3.png"
 
 #define DEFAULT_BULLET_PATH ":/res/bullet/default.png"
-// ęæåč““å¾č·Æå¾
+// 激光贴图路径
 #define REIMU_LASER_PATH ":/res/bullet/reimu_laser.png"
 #define MARISA_LASER_PATH ":/res/bullet/marisa_laser.png"
 #define SAKUYA_LASER_PATH ":/res/bullet/sakuya_laser.png"
@@ -79,7 +80,7 @@ enum LaserType {
 #define ENEMY_LASER_PATH ":/res/bullet/enemy_laser.png"
 #define DEFAULT_LASER_PATH ":/res/bullet/default_laser.png"
 
-// å¶ä»č““å¾č·Æå¾
+// 其他贴图路径
 
 #define ITEM_SOURCE ":/res/ANM/ANM/etama/etama2.png"
 #define ASCII_SOURCE ":/res/ANM/ANM/ascii/ascii.png"
@@ -112,64 +113,64 @@ enum LaserType {
 #define MENU_OPTIONS_SOURCE ":/res/ANM/ANM/title/title01.png"
 #define MENU_BACKGROUND_SOURCE ":/res/ANM/ANM/title/title02.png"
 
-#define MUSIC_SOURCE ":/res/MUSIC/th08_00.mid" // th08_00.mid ~ th08_20.mid, čæęäøäŗ.wav ęē„
+#define MUSIC_SOURCE ":/res/MUSIC/th08_00.mid" // th08_00.mid ~ th08_20.mid, 还有一些.wav 暂略
 
-// ęøøęå°å¾éē½®
-#define GAME_WIDTH 600  // ęøøęēŖå£å®½åŗ¦
-#define GAME_HEIGHT 900 // ęøøęēŖå£é«åŗ¦
-#define GAME_TITLE "äøę¹ę°øå¤ę" // ę é¢
+// 游戏地图配置
+#define GAME_WIDTH 600  // 游戏窗口宽度
+#define GAME_HEIGHT 900 // 游戏窗口高度
+#define GAME_TITLE "东方永夜抄" // 标题
 
-// č§č²ē¢°ęå°ŗåÆøéē½®
-#define ROLE_COLLISION_WIDTH 48   // č§č²å®½åŗ¦
-#define ROLE_COLLISION_HEIGHT 64 // č§č²é«åŗ¦
+// 角色碰撞尺寸配置
+#define ROLE_COLLISION_WIDTH 48   // 角色宽度
+#define ROLE_COLLISION_HEIGHT 64 // 角色高度
 
-// Player/Enemy å­å¼¹ēøå³
-#define MAX_BULLETS 200 // ęå¤§å­å¼¹ę°ééē½®
-#define BULLET_NUM 60   // PLAYERå¼¹å£äø­å­å¼¹ę»ę°
-#define BULLET_NUM_ENEMY 120 // ENEMYå¼¹å£äø­å­å¼¹ę»ę°
+// Player/Enemy 子弹相关
+#define MAX_BULLETS 200 // 最大子弹数量配置
+#define BULLET_NUM 60   // PLAYER弹匣中子弹总数
+#define BULLET_NUM_ENEMY 120 // ENEMY弹匣中子弹总数
 
-// Playerę°å¼éē½®
-#define INIT_PLAYER_LIFE 3  // čŖęŗåå§ēå½å¼
-#define INIT_PLAYER_SPELL 3 // čŖęŗåå§ē¬¦å”ę§½
-#define MAX_PLAYER_LIFE 8 // čŖęŗęå¤§ēå½å¼
-#define MAX_PLAYER_SPELL 8 // čŖęŗęå¤§ē¬¦å”ę§½
-#define PLAYER_SHOOT_INTERVAL 10 // čŖęŗå°å»é“é
+// Player数值配置
+#define INIT_PLAYER_LIFE 3  // 自机初始生命值
+#define INIT_PLAYER_SPELL 3 // 自机初始符卡槽
+#define MAX_PLAYER_LIFE 8 // 自机最大生命值
+#define MAX_PLAYER_SPELL 8 // 自机最大符卡槽
+#define PLAYER_SHOOT_INTERVAL 10 // 自机射击间隔
 
-// Bossē¢°ęå°ŗåÆøéē½®
-#define BOSS_COLLISION_WIDTH 144 // Bossē¢°ęē©å½¢å®½åŗ¦
-#define BOSS_COLLISION_HEIGHT 192 // Bossē¢°ęē©å½¢é«åŗ¦
+// Boss碰撞尺寸配置
+#define BOSS_COLLISION_WIDTH 144 // Boss碰撞矩形宽度
+#define BOSS_COLLISION_HEIGHT 192 // Boss碰撞矩形高度
 
-// Bossę°å¼éē½®
-#define BOSS_LIFE 80 // Bossåå§ēå½å¼
-#define BOSS_SHOOT_INTERVAL1 15 // Bossäøé¶ę®µå°å»é“é
-#define BOSS_SHOOT_INTERVAL2 5 // Bossäŗé¶ę®µå°å»é“é
-#define BOSS_SHOOT_INTERVAL3 10 // Bossäøé¶ę®µå°å»é“é
-#define BOSS_KAGUYA_SHOOT_INTERVAL1 10 // Boss Kaguya äøé¶ę®µå°å»é“é
-#define BOSS_KAGUYA_SHOOT_INTERVAL2 8 // Boss Kaguya äŗé¶ę®µå°å»é“é
-#define BOSS_KAGUYA_SHOOT_INTERVAL3 12 // Boss Kaguya äøé¶ę®µå°å»é“é
+// Boss数值配置
+#define BOSS_LIFE 80 // Boss初始生命值
+#define BOSS_SHOOT_INTERVAL1 15 // Boss一阶段射击间隔
+#define BOSS_SHOOT_INTERVAL2 5 // Boss二阶段射击间隔
+#define BOSS_SHOOT_INTERVAL3 10 // Boss三阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL1 10 // Boss Kaguya 一阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL2 8 // Boss Kaguya 二阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL3 12 // Boss Kaguya 三阶段射击间隔
 
-// ęęŗéē½®ę°ę® 
-#define ENEMY_SPEED 4  // ęęŗē§»åØéåŗ¦
-#define ENEMY_NUM   20  // ęęŗę»ę°é
-#define ENEMY_INTERVAL  100  // ęęŗåŗåŗę¶é“é“é
-#define ENEMY_LIFE 2 // ęęŗēå½å¼
+// 敌机配置数据 
+#define ENEMY_SPEED 4  // 敌机移动速度
+#define ENEMY_NUM   20  // 敌机总数量
+#define ENEMY_INTERVAL  100  // 敌机出场时间间隔
+#define ENEMY_LIFE 2 // 敌机生命值
 
-// ęęŗē¢°ęå°ŗåÆøéē½®
-#define ENEMY_COLLISION_WIDTH 48 // ęęŗē¢°ęē©å½¢å®½åŗ¦
-#define ENEMY_COLLISION_HEIGHT 64 // ęęŗē¢°ęē©å½¢é«åŗ¦
+// 敌机碰撞尺寸配置
+#define ENEMY_COLLISION_WIDTH 48 // 敌机碰撞矩形宽度
+#define ENEMY_COLLISION_HEIGHT 64 // 敌机碰撞矩形高度
 
-// ęęēē§»åØéåŗ¦äæ”ęÆ
-#define SHIFTED_PLAYER_SPEED 8 // ē©å®¶å éē§»åØéåŗ¦
-#define NORMAL_PLAYER_SPEED 4 // ē©å®¶ę®éē§»åØéåŗ¦
-#define PLAYER_REIMU_BULLET_SPEED 10 // ē©å®¶Reimuå­å¼¹ē§»åØéåŗ¦
-#define PLAYER_MARISA_BULLET_SPEED 8 // ē©å®¶Marisaå­å¼¹ē§»åØéåŗ¦
-#define BOSS_BULLET_SPEED 10 // BOSSę®éå­å¼¹ē§»åØéåŗ¦
+// 所有的移动速度信息
+#define SHIFTED_PLAYER_SPEED 8 // 玩家加速移动速度
+#define NORMAL_PLAYER_SPEED 4 // 玩家普通移动速度
+#define PLAYER_REIMU_BULLET_SPEED 10 // 玩家Reimu子弹移动速度
+#define PLAYER_MARISA_BULLET_SPEED 8 // 玩家Marisa子弹移动速度
+#define BOSS_BULLET_SPEED 10 // BOSS普通子弹移动速度
 
-// ęęēå­å¼¹å°ŗåÆøäæ”ęÆ
-#define PLAYER_BULLET_WIDTH 16 // ē©å®¶å­å¼¹å®½åŗ¦
-#define PLAYER_BULLET_HEIGHT 16 // ē©å®¶å­å¼¹é«åŗ¦
+// 所有的子弹尺寸信息
+#define PLAYER_BULLET_WIDTH 16 // 玩家子弹宽度
+#define PLAYER_BULLET_HEIGHT 16 // 玩家子弹高度
 
-// ęæåäæ”ęÆ
-#define MAX_LASERS 16 // ęå¤§ęæåę°é
+// 激光信息
+#define MAX_LASERS 16 // 最大激光数量
 
 #endif // CONFIG_H
