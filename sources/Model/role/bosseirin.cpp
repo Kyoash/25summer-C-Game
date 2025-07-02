@@ -57,7 +57,7 @@ void BossEirin::updatePosition()
         }
         // 移动期
 
-            m_X += m_SpeedX;
+        m_X += m_SpeedX;
         if (m_X >= (GAME_WIDTH - m_Role.width()) * 3 / 4) {
             m_SpeedX = rand() % 10 + -5;
             if(m_SpeedX > 0){
@@ -217,7 +217,7 @@ void BossEirin::pattern3()
     for (int i = -1; i <= 1; i++) {
         for (int j = 0; j < MAX_BULLETS; j++) {
             if (m_secondBullets[j].m_Free) {
-                //m_firstBullets[j].reset();
+                m_secondBullets[j].reset();  // here is a tag1 !!!!!!
                 m_secondBullets[j].m_Free = false;
                 m_secondBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[j].m_Rect.width() * 0.5;
                 m_secondBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_secondBullets[j].m_Rect.height() * 0.5;
@@ -232,3 +232,4 @@ void BossEirin::pattern3()
         }
     }
 }
+

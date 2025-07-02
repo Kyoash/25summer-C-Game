@@ -18,6 +18,7 @@ public:
     BulletType getType() const { return m_type; }
 
     void setAngleLimit(double limit) { angleLimit = limit; }
+    void reset();
 
 public:
     // 子弹类型
@@ -45,8 +46,8 @@ public:
     QRect m_collisionRect;
 
     // 子弹速度属性
-    int m_SpeedX;
-    int m_SpeedY;
+    double m_SpeedX;
+    double m_SpeedY;
 
     // 是否追踪
     bool isTracking;
@@ -54,14 +55,19 @@ public:
     int targetX;
     int targetY;
     // 追踪角度上限(子弹在追踪过程中最多偏转多少)
-    double angleLimit = M_PI / 8;
+    double angleLimit = M_PI;
     // 初速度得到初角度
-    int m_InitSpeedX;
-    int m_InitSpeedY;
+    double m_InitSpeedX;
+    double m_InitSpeedY;
     // 当前偏转角度
     double angleSwift;
+
+    int zhuizongnow;
+    int maxzhuizong;
+    bool zhuizongwancheng;
 
 };
 
 #endif // BULLET_H
+
 

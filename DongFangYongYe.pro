@@ -29,6 +29,7 @@ SOURCES += \
     sources/Model/savemanager.cpp \
     sources/Model/scoremanager.cpp \
     sources/View/gameview.cpp \
+    sources/View/loadingview.cpp \
     sources/View/mainmenuview.cpp \
     sources/View/pauseview.cpp \
     sources/View/roleselectview.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     sources/Model/savemanager.h \
     sources/Model/scoremanager.h \
     sources/View/gameview.h \
+    sources/View/loadingview.h \
     sources/View/mainmenuview.h \
     sources/View/pauseview.h \
     sources/View/roleselectview.h \
@@ -72,6 +74,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc \
-    resources.qrc \
-    sources/ViewModel/resources.qrc
+    src.qrc \

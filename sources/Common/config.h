@@ -1,7 +1,140 @@
+// #ifndef CONFIG_H
+// #define CONFIG_H
+
+// /********** 游戏配置数据 **********/
+// #define GAME_WIDTH  (768 * 1)  // 宽度
+// #define GAME_HEIGHT (768 * 1)  // 高度
+// #define RIGHT_PANEL_WIDTH (256 * 1) // 右侧面板宽度
+// #define PLAY_AREA_WIDTH (512 * 1)  // 游戏区域宽度
+// #define GAME_TITLE "DongFangYongYe" // 标题
+
+// #define GAME_RES_PATH  "./DongFang.rcc" // rcc文件路径
+
+// #define GAME_ICON  ""
+
+// // /********** 地图配置数据 **********/
+// // #define MAP_PATH  "" // 地图图片路径
+// // #define MAP_PATH_PANEL  "" // 地图图片路径
+// // #define MAP_SCROLL_SPEED 2  // 地图滚动速度
+
+// // #define GAME_RATE  10   // 刷新间隔，帧率 单位毫秒
+
+// // /********** 飞机配置数据 **********/
+// // #define HERO_PATH ""
+
+// // /********** 子弹配置数据 **********/
+// // #define BULLET_PATH ""   // 子弹图片路径
+// // #define BULLET_SPEED 10  // 子弹移动速度
+
+// // #define MAX_BULLETS 200 // 最大子弹数量配置
+// // #define BULLET_NUM 50   // 弹匣中子弹总数
+// // #define BULLET_INTERVAL 10 // 发射子弹时间间隔
+
+// // /********** 敌机配置数据 **********/
+// // #define ENEMY_PATH  ""  // 敌机资源图片
+// // #define ENEMY_SPEED 4  // 敌机移动速度
+// // #define ENEMY_NUM   20  // 敌机总数量
+// // #define ENEMY_INTERVAL  100  // 敌机出场时间间隔
+// // #define ENEMY_LIFE 3 // 敌机生命值
+
+// // // 敌机子弹配置
+// // #define ENEMY_BULLET_PATH ""   // 敌机子弹图片路径
+// // #define ENEMY_BULLET_SPEED 3    // 敌机子弹速度
+// // #define ENEMY_BULLET_NUM   200  // 敌机子弹总数量
+// // #define ENEMY_SHOOT_INTERVAL 80 // 敌机发射子弹时间间隔
+
+// // // 血条配置
+// // #define HERO_LIFE 30  // 自机初始生命值
+// // #define LIFE_BAR_WIDTH 200 // 血条宽度
+// // #define LIFE_BAR_HEIGHT 20 // 血条高度
+
+// // // 碰撞体积配置
+// // #define HERO_COLLISION_WIDTH 10
+// // #define HERO_COLLISION_HEIGHT 10
+// // #define ENEMY_COLLISION_WIDTH 100
+// // #define ENEMY_COLLISION_HEIGHT 100
+// // #define BULLET_COLLISION_WIDTH 20
+// // #define BULLET_COLLISION_HEIGHT 20
+// // #define ENEMY_BULLET_COLLISION_WIDTH 20
+// // #define ENEMY_BULLET_COLLISION_HEIGHT 20
+
+// // /********** 爆炸配置数据 **********/
+// // #define BOMB_PATH  ""   // 爆炸资源图片
+// // #define BOMB_NUM  20     // 爆炸数量
+// // #define BOMB_MAX  7      // 爆炸图片最大索引
+// // #define BOMB_INTERVAL 20   // 爆炸切图时间间隔
+
+// // /********** 音效配置数据 **********/
+// // #define SOUND_BACKGROUND ""
+// // #define SOUND_BOMB ""
+// // #define SOUND_HIT  ""
+// // #define SOUND_GAMEOVER ""
+
+// // #define NORMAL_SPEED 8
+// // #define SHIFTED_SPEED 4
+
+// // // 调试模式配置
+// // #define DEBUG_COLLISION_BOX 1 // 1为开启碰撞框显示，0为关闭
+
+// // // 分数文件路径
+// // #define SCORE_FILE ""
+
+// // // 飞机类型定义
+// // enum PlaneType {
+// //     HERO_PLANE,
+// //     ENEMY_PLANE
+// // };
+
+// // // 子弹类型定义
+// // enum BulletType {
+// //     HERO_BULLET,
+// //     ENEMY_BULLET
+// // };
+
+// #define SPELL_CIRCLE_SOURCE ":/res/ANM/ANM/etama/etama3.png"
+// #define ENEMY_BOSS_BULLET_1_SOURCE ":/res/ANM/ANM/etama/etama.png"
+// #define ENEMY_BOSS_BULLET_2_SOURCE ":/res/ANM/ANM/etama/etama6.png"
+
+// #define ITEM_SOURCE ":/res/ANM/ANM/etama/etama2.png"
+// #define ASCII_SOURCE ":/res/ANM/ANM/ascii/ascii.png"
+// #define LOADING_SOURCE ":/res/ANM/ANM/ascii/loading.png"
+// #define PAUSE_SOURCE ":/res/ANM/ANM/ascii/pause.png"
+
+// #define NAME_SOURCE ":/res/ANM/ANM/front/ename.png"
+// #define LIFE_BOMB_SOURCE ":/res/ANM/ANM/front/front.png"
+
+// #define PAINTING_REIMU_YUKARI_SOURCE ":/res/ANM/ANM/image/loading00.png"
+// #define PAINTING_MARISA_ALICE_SOURCE ":/res/ANM/ANM/image/loading01.png"
+// #define PAINTING_REIMU_SOURCE ":/res/ANM/ANM/image/loading00h.png"
+// #define PAINTING_MARISA_SOURCE ":/res/ANM/ANM/image/loading01h.png"
+
+// #define PLAYER_REIMU_SOURCE ":/res/ANM/ANM/player/player00.png"
+// #define PLAYER_MARISA_SOURCE ":/res/ANM/ANM/player/player01.png"
+
+// #define ENEMY_SOURCE ":/res/ANM/ANM/stgenm/enemy.png"
+// #define BOSS_SAKUYA_SOURCE ":/res/ANM/ANM/stgenm/stg9enm_sk.png"
+// #define BOSS_YOUMU_SOURCE ":/res/ANM/ANM/stgenm/stg9enm_ym.png"
+// #define BOSS_EIRIN_SOURCE ":/res/ANM/ANM/stgenm/stg7enm.png"
+// #define BOSS_KAGUYA_SOURCE ":/res/ANM/ANM/stgenm/stg7enm2.png"
+
+// #define RESULT_PLAYER_SOURCE ":/res/ANM/ANM/result/result00.png"
+// #define RESULT_DIFFICULTY_SOURCE ":/res/ANM/ANM/result/result01.png"
+// #define RESULT_SCORE_SOURCE ":/res/ANM/ANM/result/result03.png"
+
+// #define REIMU_YUKARI_SELECT_SOURCE ":/res/ANM/ANM/title/sl_pltxt0.png"
+// #define MARISA_ALICE_SELECT_SOURCE ":/res/ANM/ANM/title/sl_pltxt1.png"
+// #define MENU_OPTIONS_SOURCE ":/res/ANM/ANM/title/title01.png"
+// #define MENU_BACKGROUND_SOURCE ":/res/ANM/ANM/title/title02.png"
+
+// #define MUSIC_SOURCE ":/res/MUSIC/th08_00.mid" // th08_00.mid ~ th08_20.mid, 还有一些.wav 暂略
+
+// #endif // CONFIG_H
+
+
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define GAME_RATE 25 // 游戏帧率，每秒40帧
+#define GAME_RATE 10
 
 // 角色类型定义
 enum RoleType {
@@ -116,13 +249,13 @@ enum LaserType {
 #define MUSIC_SOURCE ":/res/MUSIC/th08_00.mid" // th08_00.mid ~ th08_20.mid, 还有一些.wav 暂略
 
 // 游戏地图配置
-#define GAME_WIDTH 600  // 游戏窗口宽度
-#define GAME_HEIGHT 900 // 游戏窗口高度
+#define GAME_WIDTH 576  // 游戏窗口宽度
+#define GAME_HEIGHT 864 // 游戏窗口高度
 #define GAME_TITLE "东方永夜抄" // 标题
 
 // 角色碰撞尺寸配置
-#define ROLE_COLLISION_WIDTH 48   // 角色宽度
-#define ROLE_COLLISION_HEIGHT 64 // 角色高度
+#define ROLE_COLLISION_WIDTH 20   // 角色宽度
+#define ROLE_COLLISION_HEIGHT 30 // 角色高度
 
 // Player/Enemy 子弹相关
 #define MAX_BULLETS 200 // 最大子弹数量配置
@@ -149,7 +282,7 @@ enum LaserType {
 #define BOSS_KAGUYA_SHOOT_INTERVAL2 8 // Boss Kaguya 二阶段射击间隔
 #define BOSS_KAGUYA_SHOOT_INTERVAL3 12 // Boss Kaguya 三阶段射击间隔
 
-// 敌机配置数据 
+// 敌机配置数据
 #define ENEMY_SPEED 4  // 敌机移动速度
 #define ENEMY_NUM   20  // 敌机总数量
 #define ENEMY_INTERVAL  100  // 敌机出场时间间隔
@@ -160,11 +293,11 @@ enum LaserType {
 #define ENEMY_COLLISION_HEIGHT 64 // 敌机碰撞矩形高度
 
 // 所有的移动速度信息
-#define SHIFTED_PLAYER_SPEED 16 // 玩家加速移动速度
-#define NORMAL_PLAYER_SPEED 8 // 玩家普通移动速度
+#define SHIFTED_PLAYER_SPEED 8 // 玩家加速移动速度
+#define NORMAL_PLAYER_SPEED 4 // 玩家普通移动速度
 #define PLAYER_REIMU_BULLET_SPEED (-10) // 玩家Reimu子弹移动速度
 #define PLAYER_MARISA_BULLET_SPEED (-8) // 玩家Marisa子弹移动速度
-#define BOSS_BULLET_SPEED 10 // BOSS普通子弹移动速度
+#define BOSS_BULLET_SPEED 7 // BOSS普通子弹移动速度
 
 // 所有的子弹尺寸信息
 #define PLAYER_BULLET_WIDTH 16 // 玩家子弹宽度
@@ -172,5 +305,10 @@ enum LaserType {
 
 // 激光信息
 #define MAX_LASERS 16 // 最大激光数量
+
+// temp
+#define GAME_RES_PATH  "./DongFang.rcc" // rcc文件路径
+#define VIEW_WIDTH 768  // 游戏窗口宽度
+#define VIEW_HEIGHT 768 // 游戏窗口高度
 
 #endif // CONFIG_H

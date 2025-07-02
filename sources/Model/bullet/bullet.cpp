@@ -3,12 +3,9 @@
 Bullet::Bullet(RoleType rtype, BulletType btype) :
     m_type(btype),
     role_type(rtype),
-    m_X(0),
-    m_Y(0),
-    m_Speed(0),
+
     m_Free(true),
-    m_SpeedX(0),
-    m_SpeedY(0),
+    m_SpeedY(rtype >= BOSS_SAKUYA ? 10 : -10),
     isTracking(false),
     targetX(0),
     targetY(0),
@@ -126,33 +123,38 @@ Bullet::Bullet(RoleType rtype, BulletType btype) :
     m_Rect = QRect(m_X, m_Y, m_Bullet.width(), m_Bullet.height());
     m_collisionRect = QRect(m_X, m_Y, 0.75 * m_Bullet.width(), 0.75 * m_Bullet.height());
 
-    // 根据角色类型设置默认速度
-    if(role_type == PLAYER_REIMU) {
-        m_Speed = PLAYER_REIMU_BULLET_SPEED;
-    }else if(role_type == PLAYER_MARISA){
-        m_Speed = PLAYER_MARISA_BULLET_SPEED;
-    }
-
     // 记录初始速度方向
     if(role_type != PLAYER_REIMU && role_type != PLAYER_MARISA){
         m_InitSpeedX = m_SpeedX;
         m_InitSpeedY = m_SpeedY;
     }else{
-        m_InitSpeedY = m_Speed;
+        m_InitSpeedY = m_SpeedY;
         m_InitSpeedX = 0;
     }
-    
+
+    zhuizongnow = 0;
+    maxzhuizong = 80;
+    zhuizongwancheng = false;
+
 }
 
 void Bullet::updatePosition()
 {
     // 如果子弹空闲，不需要更新
     if(m_Free) {
+        zhuizongnow = 0;
+        zhuizongwancheng = false;
         return;
     }
 
     // 追踪子弹逻辑
-    if(isTracking) {
+    if(isTracking && !zhuizongwancheng) {
+        if(m_SpeedX < 1e-3 && m_SpeedX > (-1) * 1e-3){
+            m_SpeedX = 0.1;
+        }
+        if(m_SpeedY < 1e-3 && m_SpeedY > (-1) * 1e-3){
+            m_SpeedY = 0.1;
+        }
         // 计算朝向目标的方向向量
         double dx = targetX - m_X;
         double dy = targetY - m_Y;
@@ -166,46 +168,92 @@ void Bullet::updatePosition()
             // 计算当前方向向量
             double currentDirX = 0;
             double currentDirY = 0;
-            double currentSpeed = sqrt(m_SpeedX * m_SpeedX + m_SpeedY * m_SpeedY);
+            double currentSpeed = sqrt(double(m_SpeedX * m_SpeedX + m_SpeedY * m_SpeedY));
 
-            if(currentSpeed > 0) {
-                currentDirX = m_SpeedX / currentSpeed;
-                currentDirY = m_SpeedY / currentSpeed;
-            } else {
-                // 如果没有初始速度，使用初始速度方向
-                currentDirX = m_InitSpeedX > 0 ? 1 : (m_InitSpeedX < 0 ? -1 : 0);
-                currentDirY = m_InitSpeedY > 0 ? 1 : (m_InitSpeedY < 0 ? -1 : 0);
-                currentSpeed = m_Speed;
-            }
+            // // // // ???把这一段删了追踪弹打不出来？？？ tag2!!!
+            // // if (currentSpeed < 1e-2 && currentSpeed > -1e-2) {
+            // //     currentSpeed = m_Speed; // 默认速度
+            // //     if (abs(currentSpeed) < 1e-2) currentSpeed = -10; // 避免0
+            // //     m_SpeedX = m_InitSpeedX != 0 ? m_InitSpeedX : 0;
+            // //     m_SpeedY = m_InitSpeedY != 0 ? m_InitSpeedY : currentSpeed;
+            // // }
+            // if(currentSpeed == 0){
+            //     m_SpeedX = -3;
+            //     m_SpeedY = 4;
+            //     currentSpeed = 5;
+            // }
+
+            currentDirX = m_SpeedX / currentSpeed;
+            currentDirY = m_SpeedY / currentSpeed;
 
             // 计算当前方向与目标方向之间的角度差
-            double dot = currentDirX * targetDirX + currentDirY * targetDirY;
-            double cross = currentDirX * targetDirY - currentDirY * targetDirX;
-            double angleDiff = atan2(cross, dot);
-
-            // 限制偏转角度在允许范围内
-            double maxAngleChange = M_PI / 180 * 2; // 每次最多偏转2度
-            if(fabs(angleDiff) > maxAngleChange) {
-                angleDiff = (angleDiff > 0) ? maxAngleChange : -maxAngleChange;
+            // 替换现有的角度差计算
+            double angleCurrent;
+            double angleTarget;
+            if(currentDirX == 0){
+                if(currentDirY < 0){
+                    angleCurrent = - M_PI / 2;
+                }else{
+                    angleCurrent = M_PI / 2;
+                }
+            }else{
+                angleCurrent = atan2(currentDirY, currentDirX);
+            }
+            if(targetDirX == 0){
+                if(targetDirY < 0){
+                    angleTarget = - M_PI / 2;
+                }else{
+                    angleTarget = M_PI / 2;
+                }
+            }else{
+                angleTarget = atan2(targetDirY, targetDirX);
             }
 
+            double angleDiff = angleTarget - angleCurrent;
+
+            // 将角度差标准化到[-π, π]范围内
+            while (angleDiff > M_PI) angleDiff -= 2 * M_PI;
+            while (angleDiff < -M_PI) angleDiff += 2 * M_PI;
+
+            // 限制偏转角度在允许范围内
+
+            //double maxAngleChange = M_PI / 180 * 50; // 每次最多偏转10度
+            //if(fabs(angleDiff) > maxAngleChange) {
+            //    angleDiff = (angleDiff > 0) ? maxAngleChange : -maxAngleChange;
+            //}
+
+            /*
             // 累计偏转角度
             angleSwift += fabs(angleDiff);
 
             // 如果累计偏转超过角度限制，则不再偏转
             if(angleSwift > angleLimit) {
-                angleDiff = 0;
+                isTracking = false;
             }
-
+            */
             // 计算新的方向向量
             double newDirX = currentDirX * cos(angleDiff) - currentDirY * sin(angleDiff);
             double newDirY = currentDirX * sin(angleDiff) + currentDirY * cos(angleDiff);
-
+            // 归一化新方向（避免精度累积)
+            double len = sqrt(newDirX * newDirX + newDirY * newDirY);
+            if (len != 1.0) {
+                newDirX /= len;
+                newDirY /= len;
+            }
             // 更新速度向量
-            m_SpeedX = newDirX * currentSpeed;
-            m_SpeedY = newDirY * currentSpeed;
+            m_SpeedX = newDirX * currentSpeed  ;
+            m_SpeedY = newDirY * currentSpeed  ;
         }
+        zhuizongnow++;
     }
+    if(zhuizongnow >= maxzhuizong){
+        zhuizongwancheng = true;
+    }
+    // 基于距离判断是否完成追踪
+    // double distanceToTarget = sqrt(pow(targetX - m_X, 2) + pow(targetY - m_Y, 2));
+    // if (distanceToTarget < 50 || zhuizongnow >= maxzhuizong) {
+    //     zhuizongwancheng = true;
+    // }
 
     // 根据速度移动子弹
     if(m_SpeedX != 0 || m_SpeedY != 0) {
@@ -216,7 +264,7 @@ void Bullet::updatePosition()
         // 使用单一方向速度移动
         if(role_type == PLAYER_REIMU || role_type == PLAYER_MARISA) {
             // 玩家子弹向上移动
-            m_Y -= m_Speed;
+            m_Y += m_Speed;
         } else {
             // 敌人子弹向下移动
             m_Y += m_Speed;
@@ -233,8 +281,15 @@ void Bullet::updatePosition()
         );
 
     // 检查子弹是否超出屏幕
-    if(m_Y < -m_Bullet.height() || m_Y > GAME_HEIGHT ||
-        m_X < -m_Bullet.width() || m_X > GAME_WIDTH) {
+    if(m_Y < 0 || m_Y > (GAME_HEIGHT - m_collisionRect.height()) ||
+        m_X < 0 || m_X > (GAME_WIDTH - m_collisionRect.width())) {
         m_Free = true;
     }
+}
+
+void Bullet::reset()
+{
+    isTracking = false;
+    zhuizongnow = 0;
+    zhuizongwancheng = false;
 }

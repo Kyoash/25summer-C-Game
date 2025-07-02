@@ -3,14 +3,14 @@
 #include "../../common/config.h"
 #include <cmath>
 
-Marisa::Marisa() : Role(PLAYER_MARISA), m_alternateFire(true)
+Marisa::Marisa() : Role(PLAYER_MARISA), m_alternateFire(false)
 {
     // 魔理沙特有属性
     m_power = 0;
     m_graze = 0;
     m_unmatched = false;
     m_Speed = NORMAL_PLAYER_SPEED; // 玩家移动速度
-    
+
 }
 void Marisa::shoot()
 {
@@ -31,31 +31,37 @@ void Marisa::shoot()
             if (m_secondBullets[i].m_Free) {
                 if (m_power < 2) {
                     // 低火力 - 单发追踪弹
+                    m_secondBullets[i].reset();  // here is a tag1 !!!!!!
                     m_secondBullets[i].m_Free = false;
                     m_secondBullets[i].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[i].m_Rect.width() * 0.5;
                     m_secondBullets[i].m_Y = m_Y - m_secondBullets[i].m_Rect.height();
                     m_secondBullets[i].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                     m_secondBullets[i].m_SpeedX = 0;
-                    m_secondBullets[i].setAngleLimit(M_PI / 8);
+                    m_secondBullets[i].setAngleLimit(M_PI / 2);
+                    m_secondBullets[i].isTracking = true;
                     bulletFired = true;
                     break;
                 }
                 else if (m_power < 4) {
                     // 中火力 - 双发追踪弹
                     if (i + 1 < BULLET_NUM && m_secondBullets[i + 1].m_Free) {
+                        m_secondBullets[i].reset();  // here is a tag1 !!!!!!
                         m_secondBullets[i].m_Free = false;
                         m_secondBullets[i].m_X = m_X + m_Role.width() * 0.3 - m_secondBullets[i].m_Rect.width() * 0.5;
                         m_secondBullets[i].m_Y = m_Y - m_secondBullets[i].m_Rect.height();
                         m_secondBullets[i].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                         m_secondBullets[i].m_SpeedX = 0;
-                        m_secondBullets[i].setAngleLimit(M_PI / 6);
+                        m_secondBullets[i].setAngleLimit(M_PI);
+                        m_secondBullets[i].isTracking = true;
 
+                        m_secondBullets[i + 1].reset();  // here is a tag1 !!!!!!
                         m_secondBullets[i + 1].m_Free = false;
                         m_secondBullets[i + 1].m_X = m_X + m_Role.width() * 0.7 - m_secondBullets[i + 1].m_Rect.width() * 0.5;
                         m_secondBullets[i + 1].m_Y = m_Y - m_secondBullets[i + 1].m_Rect.height();
                         m_secondBullets[i + 1].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                         m_secondBullets[i + 1].m_SpeedX = 0;
-                        m_secondBullets[i + 1].setAngleLimit(M_PI / 6);
+                        m_secondBullets[i + 1].setAngleLimit(M_PI);
+                        m_secondBullets[i + 1].isTracking = true;
                         bulletFired = true;
                         break;
                     }
@@ -63,26 +69,32 @@ void Marisa::shoot()
                 else {
                     // 高火力 - 三发追踪弹
                     if (i + 2 < BULLET_NUM && m_secondBullets[i + 1].m_Free && m_secondBullets[i + 2].m_Free) {
+                        m_secondBullets[i].reset();  // here is a tag1 !!!!!!
                         m_secondBullets[i].m_Free = false;
                         m_secondBullets[i].m_X = m_X + m_Role.width() * 0.2 - m_secondBullets[i].m_Rect.width() * 0.5;
                         m_secondBullets[i].m_Y = m_Y - m_secondBullets[i].m_Rect.height();
                         m_secondBullets[i].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                         m_secondBullets[i].m_SpeedX = 0;
-                        m_secondBullets[i].setAngleLimit(M_PI / 4);
+                        m_secondBullets[i].setAngleLimit(M_PI * 2);
+                        m_secondBullets[i].isTracking = true;
 
+                        m_secondBullets[i + 1].reset();  // here is a tag1 !!!!!!
                         m_secondBullets[i + 1].m_Free = false;
                         m_secondBullets[i + 1].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[i + 1].m_Rect.width() * 0.5;
                         m_secondBullets[i + 1].m_Y = m_Y - m_secondBullets[i + 1].m_Rect.height();
                         m_secondBullets[i + 1].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                         m_secondBullets[i + 1].m_SpeedX = 0;
-                        m_secondBullets[i + 1].setAngleLimit(M_PI / 4);
+                        m_secondBullets[i + 1].setAngleLimit(M_PI * 2);
+                        m_secondBullets[i + 1].isTracking = true;
 
+                        m_secondBullets[i + 2].reset();  // here is a tag1 !!!!!!
                         m_secondBullets[i + 2].m_Free = false;
                         m_secondBullets[i + 2].m_X = m_X + m_Role.width() * 0.8 - m_secondBullets[i + 2].m_Rect.width() * 0.5;
                         m_secondBullets[i + 2].m_Y = m_Y - m_secondBullets[i + 2].m_Rect.height();
                         m_secondBullets[i + 2].m_SpeedY = PLAYER_MARISA_BULLET_SPEED;
                         m_secondBullets[i + 2].m_SpeedX = 0;
-                        m_secondBullets[i + 2].setAngleLimit(M_PI / 4);
+                        m_secondBullets[i + 2].setAngleLimit(M_PI * 2);
+                        m_secondBullets[i + 2].isTracking = true;
                         bulletFired = true;
                         break;
                     }
@@ -176,6 +188,6 @@ void Marisa::useSpellCard()
         m_spell--;
         // 魔理沙符卡效果：发射强力追踪弹
         m_unmatched = true;
-        
+
     }
 }

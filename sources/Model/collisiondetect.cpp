@@ -65,72 +65,72 @@ void GameModel::collisionDetection()
 
 
 void GameModel::collision_reimu_youmu(){
-    //玩家子弹与Boss碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_reimu.m_firstBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_reimu.m_firstBullets[i].m_collisionRect))
-        {
-            m_boss_youmu.m_life--;
-            m_reimu.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_reimu.m_secondBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_reimu.m_secondBullets[i].m_collisionRect))
-        {
-            m_boss_youmu.m_life--;
-            m_reimu.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss子弹与玩家碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_boss_youmu.m_firstBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_youmu.m_firstBullets[i].m_collisionRect))
-        {
-            m_reimu.m_life--;
-            m_boss_youmu.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_boss_youmu.m_secondBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_youmu.m_secondBullets[i].m_collisionRect))
-        {
-            m_reimu.m_life--;
-            m_boss_youmu.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss与玩家碰撞
-    if(m_boss_youmu.m_collisionRect.intersects(m_reimu.m_collisionRect))
-    {
-        m_reimu.m_life--;
-    }
+    // //玩家子弹与Boss碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_reimu.m_firstBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_reimu.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_youmu.m_life--;
+    //         m_reimu.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_reimu.m_secondBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_reimu.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_youmu.m_life--;
+    //         m_reimu.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss子弹与玩家碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_boss_youmu.m_firstBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_youmu.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_reimu.m_life--;
+    //         m_boss_youmu.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_boss_youmu.m_secondBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_youmu.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_reimu.m_life--;
+    //         m_boss_youmu.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss与玩家碰撞
+    // if(m_boss_youmu.m_collisionRect.intersects(m_reimu.m_collisionRect))
+    // {
+    //     m_reimu.m_life--;
+    // }
 }
 
 void GameModel::collision_reimu_sakuya(){
-    //玩家子弹与Boss碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_reimu.m_firstBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_firstBullets[i].m_collisionRect))
-        {
-            m_boss_sakuya.m_life--;
-            m_reimu.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_reimu.m_secondBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_secondBullets[i].m_collisionRect))
-        {
-            m_boss_sakuya.m_life--;
-            m_reimu.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss子弹与玩家碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_boss_sakuya.m_firstBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_sakuya.m_firstBullets[i].m_collisionRect))
-        {
-            m_reimu.m_life--;
-            m_boss_sakuya.m_firstBullets[i].m_Free = true;
+    // //玩家子弹与Boss碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_reimu.m_firstBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_sakuya.m_life--;
+    //         m_reimu.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_reimu.m_secondBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_sakuya.m_life--;
+    //         m_reimu.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss子弹与玩家碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_boss_sakuya.m_firstBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_sakuya.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_reimu.m_life--;
+    //         m_boss_sakuya.m_firstBullets[i].m_Free = true;
 
-        }
-        if(!m_boss_sakuya.m_secondBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_sakuya.m_secondBullets[i].m_collisionRect))
-        {
-            m_reimu.m_life--;
-            m_boss_sakuya.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss与玩家碰撞
-    if(m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_collisionRect))
-    {
-        m_reimu.m_life--;
-    }
+    //     }
+    //     if(!m_boss_sakuya.m_secondBullets[i].m_Free & m_reimu.m_collisionRect.intersects(m_boss_sakuya.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_reimu.m_life--;
+    //         m_boss_sakuya.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss与玩家碰撞
+    // if(m_boss_sakuya.m_collisionRect.intersects(m_reimu.m_collisionRect))
+    // {
+    //     m_reimu.m_life--;
+    // }
 }
 
 void GameModel::collision_reimu_kaguya(){
@@ -204,72 +204,72 @@ void GameModel::collision_reimu_eirin(){
 }
 
 void GameModel::collision_marisa_youmu(){
-    //玩家子弹与Boss碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_marisa.m_firstBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_marisa.m_firstBullets[i].m_collisionRect))
-        {
-            m_boss_youmu.m_life--;
-            m_marisa.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_marisa.m_secondBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_marisa.m_secondBullets[i].m_collisionRect))
-        {
-            m_boss_youmu.m_life--;
-            m_marisa.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss子弹与玩家碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_boss_youmu.m_firstBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_youmu.m_firstBullets[i].m_collisionRect))
-        {
-            m_marisa.m_life--;
-            m_boss_youmu.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_boss_youmu.m_secondBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_youmu.m_secondBullets[i].m_collisionRect))
-        {
-            m_marisa.m_life--;
-            m_boss_youmu.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss与玩家碰撞
-    if(m_boss_youmu.m_collisionRect.intersects(m_marisa.m_collisionRect))
-    {
-        m_marisa.m_life--;
-    }
+    // //玩家子弹与Boss碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_marisa.m_firstBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_marisa.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_youmu.m_life--;
+    //         m_marisa.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_marisa.m_secondBullets[i].m_Free & m_boss_youmu.m_collisionRect.intersects(m_marisa.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_youmu.m_life--;
+    //         m_marisa.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss子弹与玩家碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_boss_youmu.m_firstBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_youmu.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_marisa.m_life--;
+    //         m_boss_youmu.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_boss_youmu.m_secondBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_youmu.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_marisa.m_life--;
+    //         m_boss_youmu.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss与玩家碰撞
+    // if(m_boss_youmu.m_collisionRect.intersects(m_marisa.m_collisionRect))
+    // {
+    //     m_marisa.m_life--;
+    // }
 }
 
 void GameModel::collision_marisa_sakuya(){
-    //玩家子弹与Boss碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_marisa.m_firstBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_firstBullets[i].m_collisionRect))
-        {
-            m_boss_sakuya.m_life--;
-            m_marisa.m_firstBullets[i].m_Free = true;
-        }
-        if(!m_marisa.m_secondBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_secondBullets[i].m_collisionRect))
-        {
-            m_boss_sakuya.m_life--;
-            m_marisa.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss子弹与玩家碰撞
-    for(int i=0;i < MAX_BULLETS;i++){
-        if(!m_boss_sakuya.m_firstBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_sakuya.m_firstBullets[i].m_collisionRect))
-        {
-            m_marisa.m_life--;
-            m_boss_sakuya.m_firstBullets[i].m_Free = true;
+    // //玩家子弹与Boss碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_marisa.m_firstBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_sakuya.m_life--;
+    //         m_marisa.m_firstBullets[i].m_Free = true;
+    //     }
+    //     if(!m_marisa.m_secondBullets[i].m_Free & m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_boss_sakuya.m_life--;
+    //         m_marisa.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss子弹与玩家碰撞
+    // for(int i=0;i < MAX_BULLETS;i++){
+    //     if(!m_boss_sakuya.m_firstBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_sakuya.m_firstBullets[i].m_collisionRect))
+    //     {
+    //         m_marisa.m_life--;
+    //         m_boss_sakuya.m_firstBullets[i].m_Free = true;
 
-        }
-        if(!m_boss_sakuya.m_secondBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_sakuya.m_secondBullets[i].m_collisionRect))
-        {
-            m_marisa.m_life--;
-            m_boss_sakuya.m_secondBullets[i].m_Free = true;
-        }
-    }
-    //Boss与玩家碰撞
-    if(m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_collisionRect))
-    {
-        m_marisa.m_life--;
-    }
+    //     }
+    //     if(!m_boss_sakuya.m_secondBullets[i].m_Free & m_marisa.m_collisionRect.intersects(m_boss_sakuya.m_secondBullets[i].m_collisionRect))
+    //     {
+    //         m_marisa.m_life--;
+    //         m_boss_sakuya.m_secondBullets[i].m_Free = true;
+    //     }
+    // }
+    // //Boss与玩家碰撞
+    // if(m_boss_sakuya.m_collisionRect.intersects(m_marisa.m_collisionRect))
+    // {
+    //     m_marisa.m_life--;
+    // }
 }
 
 void GameModel::collision_marisa_kaguya(){
@@ -341,4 +341,3 @@ void GameModel::collision_marisa_eirin(){
         m_marisa.m_life--;
     }
 }
-

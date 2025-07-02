@@ -20,6 +20,8 @@
 #include <QTimer>
 #include <QMediaPlayer>
 
+#define updateTargetRate 1 //刷新目标的频率
+
 class GameModel : public QObject
 {
     Q_OBJECT
@@ -48,6 +50,8 @@ public:
     // 游戏控制
     void initGame(RoleType role);
     void startGame();
+    void resetGame();//重置游戏
+    void resetRoles();//重置角色
     void pauseGame();//暂停游戏
     void resumeGame();//继续游戏
     void changeStage(int next_stage);//更换关卡
@@ -81,7 +85,10 @@ private:
     void collision_marisa_sakuya();
     void collision_marisa_kaguya();
     void collision_marisa_eirin();
-
+    //子弹位置检测
+    bool checkBulletsOut(int b_x, int b_y, int b_width, int b_height);
+    //追踪子弹刷新计数器
+    int Count_Bullets_Refresh = 0;
     // 游戏元素
     Map m_map;
     Reimu m_reimu;
