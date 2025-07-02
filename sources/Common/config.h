@@ -278,9 +278,9 @@ enum LaserType {
 #define BOSS_SHOOT_INTERVAL1 15 // Boss一阶段射击间隔
 #define BOSS_SHOOT_INTERVAL2 5 // Boss二阶段射击间隔
 #define BOSS_SHOOT_INTERVAL3 10 // Boss三阶段射击间隔
-#define BOSS_KAGUYA_SHOOT_INTERVAL1 10 // Boss Kaguya 一阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL1 15 // Boss Kaguya 一阶段射击间隔
 #define BOSS_KAGUYA_SHOOT_INTERVAL2 8 // Boss Kaguya 二阶段射击间隔
-#define BOSS_KAGUYA_SHOOT_INTERVAL3 12 // Boss Kaguya 三阶段射击间隔
+#define BOSS_KAGUYA_SHOOT_INTERVAL3 15 // Boss Kaguya 三阶段射击间隔
 
 // 敌机配置数据
 #define ENEMY_SPEED 4  // 敌机移动速度

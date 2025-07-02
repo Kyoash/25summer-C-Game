@@ -9,12 +9,12 @@ BossKaguya::BossKaguya() : Role(BOSS_KAGUYA)
     m_currentPattern = 1;
     m_patternTimer = 0;
     m_spiralAngle = 0;
-    m_SpeedX = 6; // Boss移动速度稍快
-    m_SpeedY = 3; // Boss初始不垂直移动
+    m_SpeedX = rand() % 12 + -6; // 随机速度
+    m_SpeedY = rand() % 6 + -3; // 随机速度
     m_pauseTimer = 0; // 停留计时器
     m_moveCounter = 0; // 移动次数计数
-    m_targetX = rand() % (GAME_WIDTH - m_Role.width()); // 随机目标X位置
-    m_targetY = 150 + rand() % 100; // 随机目标Y位置（150-250像素）
+    m_targetX = rand() % (GAME_WIDTH - 2 * m_collisionRect.width()) + 2* m_collisionRect.width() / 2; // 随机目标X位置
+    m_targetY = 20 + m_collisionRect.height() + rand() % 100; // 随机目标Y位置（150-250像素）
     m_moveLimit = rand() % 3 + 1; // 随机移动次数限制（1-3次）
 
     // 辉夜特有属性
@@ -81,7 +81,8 @@ void BossKaguya::updatePosition()
     }
 
     // 移动期
-    if (abs(m_X - m_targetX) > 5 || abs(m_Y - m_targetY) > 5) {
+    //m_moveLimit = rand() % 3 + 1; // 随机移动次数限制（1-4次）
+    if (abs(m_X - m_targetX) > 20 || abs(m_Y - m_targetY) > 20) {
         // 向目标位置移动
         if (m_X < m_targetX) m_X += abs(m_SpeedX);
         else if (m_X > m_targetX) m_X -= abs(m_SpeedX);
@@ -95,14 +96,14 @@ void BossKaguya::updatePosition()
         // 每移动几次后停留
         if (m_moveCounter >= m_moveLimit) {
             m_moveCounter = 0;
-            m_pauseTimer = rand() % 60 + 100; // 停留100-160帧（比永琳更长）
-            m_moveLimit = rand() % 3 + 1; // 随机下次移动次数限制（1-3次）
+            m_pauseTimer = rand() % 100 + 100; // 停留100-200帧（比永琳更长）
+            m_moveLimit = rand() % 3 + 1;
         } else {
             // 设置新的随机目标位置
-            m_SpeedX = rand() % 10 + 10; // 随机速度
+            m_SpeedX = rand() % 10 + 5; // 随机速度
             m_SpeedY = rand() % 3 + 3; // 随机速度
-            m_targetX = rand() % (GAME_WIDTH - m_Role.width());
-            m_targetY = 150 + rand() % 150; // 纵向范围更大（150-300像素）
+            m_targetX = rand() % (GAME_WIDTH - 2 * m_collisionRect.width()) + 2* m_collisionRect.width() / 2; // 横向范围移动
+            m_targetY = 20 + m_collisionRect.height() + rand() % 100; // 纵向范围更大（150-300像素）
         }
     }
 
@@ -143,8 +144,8 @@ void BossKaguya::pattern1()
                 m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[j].m_Rect.height() * 0.5;
 
                 double angle = angleStep * i + m_spiralAngle;
-                m_firstBullets[j].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED;
-                m_firstBullets[j].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED;
+                m_firstBullets[j].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED * 0.5;
+                m_firstBullets[j].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED * 0.5;
 
                 // 更新螺旋角度
                 m_spiralAngle += 0.15;
@@ -209,14 +210,14 @@ void BossKaguya::pattern2()
     for (int i = -1; i <= 1; i++) {
         for (int j = 0; j < BULLET_NUM_ENEMY; j++) {
             if (m_secondBullets[j].m_Free) {
-                //m_firstBullets[j].reset();
+                m_secondBullets[j].reset();
                 m_secondBullets[j].m_Free = false;
                 m_secondBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[j].m_Rect.width() * 0.5;
                 m_secondBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_secondBullets[j].m_Rect.height() * 0.5;
 
                 double bulletAngle = angle + i * 0.4;
-                m_secondBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED ;
-                m_secondBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED ;
+                m_secondBullets[j].m_SpeedX = cos(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
+                m_secondBullets[j].m_SpeedY = sin(bulletAngle) * BOSS_BULLET_SPEED * 0.7;
                 //m_firstBullets[j].m_Direction = CUSTOM;
                 m_secondBullets[j].isTracking = true; // 设置为追踪模式
                 break;
@@ -246,6 +247,7 @@ void BossKaguya::pattern3()
         if (i % 2 == 1) { // 追踪弹（奇数索引：1,3,5,7,9）
             for (int j = 0; j < BULLET_NUM_ENEMY; j++) {
                 if (m_secondBullets[j].m_Free) {
+                    m_secondBullets[j].reset();
                     m_secondBullets[j].m_Free = false;
                     m_secondBullets[j].m_X = m_X + m_Role.width() * 0.5 - m_secondBullets[j].m_Rect.width() * 0.5;
                     m_secondBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_secondBullets[j].m_Rect.height() * 0.5;
@@ -270,8 +272,8 @@ void BossKaguya::pattern3()
                     m_firstBullets[j].m_Y = m_Y + m_Role.height() * 0.5 - m_firstBullets[j].m_Rect.height() * 0.5;
 
                     // 设置固定方向速度
-                    m_firstBullets[j].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED * 0.8;
-                    m_firstBullets[j].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED * 0.8;
+                    m_firstBullets[j].m_SpeedX = cos(angle) * BOSS_BULLET_SPEED * 0.7;
+                    m_firstBullets[j].m_SpeedY = sin(angle) * BOSS_BULLET_SPEED * 0.7;
                     break;
                 }
             }

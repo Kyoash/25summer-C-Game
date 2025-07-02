@@ -36,7 +36,7 @@ void GameModel::initGame(RoleType role)
     m_paused = false;
     //初始化角色及关卡数
     m_Now_Role = role;
-    m_Now_Boss = BOSS_EIRIN;
+    m_Now_Boss = BOSS_KAGUYA; // tag4!!!!!!!
     m_Stage = 1;
     m_enemyRecorder = 0;
     //初始化追踪弹目标刷新计数器
@@ -334,10 +334,10 @@ void GameModel::changeStage(int next_stage){
 
     switch(next_stage){
     case 1:
-        m_Now_Boss = BOSS_EIRIN;
+        m_Now_Boss = BOSS_KAGUYA;  // tag4!!!!!!!
         break;
     case 2:
-        m_Now_Boss = BOSS_KAGUYA;
+        m_Now_Boss = BOSS_EIRIN;   // tag4!!!!!!!
         break;
     case 3:
         m_Now_Boss = BOSS_YOUMU;

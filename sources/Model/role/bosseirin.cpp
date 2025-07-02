@@ -92,8 +92,8 @@ void BossEirin::updatePosition()
             return;
         }
         // 移动期
-        m_moveLimit = rand() % 3 + 2; // 随机移动次数限制（1-3次）
-        if (abs(m_X - m_targetX) > 5 || abs(m_Y - m_targetY) > 5) {
+        m_moveLimit = rand() % 3 + 2; // 随机移动次数限制（2-5次）
+        if (abs(m_X - m_targetX) > 20 || abs(m_Y - m_targetY) > 20) {
             // 向目标位置移动
             if (m_X < m_targetX) m_X += abs(m_SpeedX);
             else if (m_X > m_targetX) m_X -= abs(m_SpeedX);
